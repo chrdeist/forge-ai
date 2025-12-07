@@ -5,7 +5,8 @@
 # Generated: 2025-12-07T17:11:01.610Z
 
 # Single-stage build (no tests in runtime)
-FROM node:18-alpine-alpine
+# Note: previous template had an invalid tag `node:18-alpine-alpine`; use a valid base image.
+FROM node:18-alpine
 
 WORKDIR /app
 
