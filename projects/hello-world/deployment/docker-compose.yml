@@ -1,0 +1,68 @@
+version: '3.9'
+
+services:
+  hello-world:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: hello-world
+    
+    # Ports mapping
+    ports:
+      - "3000:3000"
+    
+    # Environment variables
+    environment:
+      NODE_ENV: production
+      LOG_LEVEL: info
+    
+    # Volume mounts
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+    
+    # Restart policy
+    restart: unless-stopped
+    
+    # Healthcheck
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/health', (r) => {if (r.statusCode !== 200) throw new Error(r.statusCode)})"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+    
+    # Logging
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    
+    # Security
+    security_opt:
+      - no-new-privileges:true
+
+  # Optional: Prometheus metrics (commented out)
+  # prometheus:
+  #   image: prom/prometheus:latest
+  #   ports:
+  #     - "9090:9090"
+  #   volumes:
+  #     - ./prometheus.yml:/etc/prometheus/prometheus.yml
+  #   depends_on:
+  #     - hello-world
+
+volumes:
+  data:
+  logs:

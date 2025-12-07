@@ -1,0 +1,33 @@
+{
+  "name": "forge-ai",
+  "version": "0.1.0",
+  "description": "Framework for Optimized Recursive Generation & Evolution - Self-learning AI agent system",
+  "type": "module",
+  "main": "packages/core/index.mjs",
+  "bin": {
+    "forge": "./packages/cli/forge.mjs"
+  },
+  "scripts": {
+    "init": "node packages/cli/init.mjs",
+    "execute": "node packages/cli/forge.mjs execute",
+    "dashboard": "node packages/cli/forge.mjs dashboard",
+    "evolve": "node packages/cli/forge.mjs evolve",
+    "test": "node --test tests/**/*.test.mjs",
+    "dev": "node --watch packages/cli/forge.mjs"
+  },
+  "keywords": [
+    "ai",
+    "agents",
+    "evolution",
+    "self-learning",
+    "code-generation",
+    "optimization"
+  ],
+  "author": "chrdeist",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,0 +1,392 @@
+{
+  "version": "2.0",
+  "last_updated": "2025-12-07T16:05:00Z",
+  "metadata": {
+    "description": "Forge AI Strategies - Systematic approaches with quality metrics",
+    "focus": "Token efficiency, workflow completeness, code quality"
+  },
+  "quality_threshold": {
+    "minimum_token_efficiency": 0.75,
+    "minimum_workflow_impact": 0.80,
+    "minimum_success_rate": 0.85
+  },
+  "strategies": [
+    {
+      "id": "strat-001-entry-point-propagation",
+      "name": "Entry Point Propagation Strategy",
+      "description": "Systematic approach for defining and propagating entry points through all workflow phases",
+      "phases": {
+        "phase_2_functional": {
+          "name": "Functional Requirements Definition",
+          "steps": [
+            "Identify application type (CLI, API, Full-Stack, etc.)",
+            "Define entry point location as explicit requirement",
+            "Document expected entry point: src/index.js, src/cli.js, src/server.js, etc.",
+            "Include in acceptance criteria: 'Application starts from [entry_point]'"
+          ]
+        },
+        "phase_3_technical": {
+          "name": "Technical Specification",
+          "steps": [
+            "Extract entry point from functional requirements",
+            "Create primary API with path field matching entry point",
+            "Example: apis[0] = { name: 'main', path: 'src/index.js', type: 'CLI' }",
+            "Document non-functional requirements for runtime (Node.js version, ports, etc.)"
+          ]
+        },
+        "phase_6_implementation": {
+          "name": "Code Implementation",
+          "steps": [
+            "Generate code for entry point as specified in Phase 3",
+            "Verify generated code matches apis[0].path",
+            "In output, propagate technicalRequirements from Phase 3",
+            "Ensure package.json main field matches entry point",
+            "All generated test files should import from correct entry point"
+          ]
+        },
+        "phase_10_deployment": {
+          "name": "Deployment & Containerization",
+          "steps": [
+            "Read technicalRequirements from Phase 6 output",
+            "Extract entry point from apis[0].path (PRIMARY SOURCE)",
+            "Generate Dockerfile with ENTRYPOINT ['node', apis[0].path]",
+            "Generate docker-compose.yml with matching command",
+            "Verify entry point in all deployment artifacts",
+            "Run tests in container to verify correct startup"
+          ]
+        }
+      },
+      "detection_algorithm": {
+        "priority_order": [
+          {
+            "rank": 1,
+            "source": "technicalRequirements.apis[0].path",
+            "reliability": "high",
+            "reason": "Explicitly specified in Phase 3"
+          },
+          {
+            "rank": 2,
+            "source": "projectMetadata.main",
+            "reliability": "medium",
+            "reason": "From package.json"
+          },
+          {
+            "rank": 3,
+            "source": "generated_files pattern matching",
+            "reliability": "low",
+            "reason": "Heuristic based on file names"
+          }
+        ]
+      },
+      "quality_checks": [
+        "Entry point exists in generated code",
+        "Entry point is executable (has proper exports/ENTRYPOINT)",
+        "Package.json main field matches entry point",
+        "Dockerfile ENTRYPOINT matches entry point",
+        "All tests pass starting from entry point",
+        "Container starts without errors"
+      ],
+      "anti_patterns": [
+        "Hardcoding entry points in deployment phase",
+        "Guessing entry point from file system",
+        "Using different entry points in tests vs deployment",
+        "Not propagating entry point info between phases"
+      ],
+      "success_rate": 0.95,
+      "recommended_for": [
+        "CLI applications",
+        "API servers",
+        "Full-stack applications",
+        "Any code generation + containerization workflow"
+      ],
+      "tags": ["entry-point", "deployment", "docker", "workflow", "architecture"],
+      "quality_metrics": {
+        "workflow_completeness": 100,
+        "code_efficiency": 80,
+        "feature_completeness": 90,
+        "test_quality": 85,
+        "resource_efficiency": 95,
+        "overall_score": 90,
+        "token_cost": "low",
+        "complexity": "medium",
+        "priority": "CRITICAL"
+      }
+    },
+    {
+      "id": "strat-002-dockerfile-generation",
+      "name": "Dockerfile Generation Strategy for Auto-Generated Code",
+      "description": "Systematic approach for generating production-ready Dockerfiles from specifications",
+      "architecture": {
+        "single_stage": {
+          "when_to_use": "Always prefer for generated code",
+          "structure": [
+            "FROM node:X-alpine",
+            "WORKDIR /app",
+            "COPY package*.json ./",
+            "RUN npm ci (dependencies)",
+            "COPY generated-code/src ./src",
+            "COPY generated-code/docs ./docs",
+            "COPY generated-code/test ./test (optional)",
+            "RUN npm test (validate in build)",
+            "ENV NODE_ENV=production",
+            "LABEL ... (metadata)",
+            "ENTRYPOINT ['node', '{entry_point}']"
+          ],
+          "benefits": [
+            "Reduced complexity for agents",
+            "Smaller final images",
+            "Tests validate containerization",
+            "Deterministic builds"
+          ]
+        }
+      },
+      "critical_decisions": {
+        "base_image": {
+          "choice": "node:X-alpine",
+          "reasoning": [
+            "5MB base vs 150MB slim",
+            "Sufficient for Node.js apps",
+            "Smaller attack surface",
+            "Consistent across projects"
+          ],
+          "fallback": "node:X-bullseye if native modules needed"
+        },
+        "dependency_installation": {
+          "choice": "npm ci --only=production",
+          "reasoning": [
+            "Deterministic installs",
+            "Reproducible builds",
+            "Smaller production images"
+          ],
+          "caveat": "Use full 'npm ci' if running tests in Docker"
+        },
+        "test_execution": {
+          "when": "During Docker build (RUN npm test)",
+          "benefit": "Fail fast, ensure containerization works",
+          "timing": "Before ENV NODE_ENV=production"
+        },
+        "entry_point": {
+          "source": "technicalRequirements.apis[0].path",
+          "validation": "Must exist in generated code",
+          "format": "ENTRYPOINT ['node', '{path}']"
+        }
+      },
+      "key_points": [
+        "All paths must be relative to WORKDIR /app",
+        "Tests run during build (quality gate)",
+        "Environment set to production",
+        "Metadata labels included",
+        "Non-root user recommended"
+      ],
+      "common_mistakes": [
+        {
+          "mistake": "Hardcoding paths like '/app/src/index.js'",
+          "fix": "Use relative paths after COPY"
+        },
+        {
+          "mistake": "Copying node_modules from source",
+          "fix": "Always npm ci in container"
+        },
+        {
+          "mistake": "Using 'latest' image tag",
+          "fix": "Explicit version: node:22-alpine"
+        },
+        {
+          "mistake": "Not cleaning package*.json copy",
+          "fix": "COPY package*.json to catch lock files"
+        }
+      ],
+      "templates_for_different_types": {
+        "cli_application": {
+          "entry_point_type": "src/index.js or src/cli.js",
+          "no_ports": true,
+          "healthcheck": false,
+          "cmd": "[]"
+        },
+        "api_server": {
+          "entry_point_type": "src/server.js or src/app.js",
+          "ports": "3000 (default)",
+          "healthcheck": true,
+          "health_endpoint": "/health"
+        },
+        "background_worker": {
+          "entry_point_type": "src/worker.js",
+          "no_ports": true,
+          "healthcheck": false,
+          "restart_policy": "on-failure"
+        }
+      },
+      "success_rate": 0.92,
+      "tags": ["dockerfile", "docker", "containerization", "generated-code"],
+      "quality_metrics": {
+        "workflow_completeness": 100,
+        "code_efficiency": 95,
+        "feature_completeness": 70,
+        "test_quality": 100,
+        "resource_efficiency": 90,
+        "overall_score": 91,
+        "token_cost": "low",
+        "complexity": "low",
+        "priority": "CRITICAL",
+        "note": "Single-stage approach minimizes tokens AND complexity"
+      }
+    },
+    {
+      "id": "strat-003-deployment-coordination",
+      "name": "Deployment Artifact Coordination Strategy",
+      "description": "How to generate and write Dockerfile, docker-compose.yml, and supporting files",
+      "artifacts": {
+        "dockerfile": {
+          "location": "deployment/Dockerfile",
+          "responsibility": "Core container configuration",
+          "generation": "From technical specs (Phase 3)"
+        },
+        "docker_compose": {
+          "location": "deployment/docker-compose.yml",
+          "responsibility": "Local orchestration",
+          "generation": "From entry point + project metadata"
+        },
+        "dockerignore": {
+          "location": "deployment/.dockerignore",
+          "responsibility": "Build optimization",
+          "contents": [
+            "node_modules",
+            "test/",
+            "deployment/",
+            "reports/",
+            ".git",
+            "README.md",
+            "*.md (documentation)"
+          ]
+        },
+        "env_template": {
+          "location": "deployment/.env.template",
+          "responsibility": "Environment configuration reference",
+          "generation": "From technicalRequirements.nonFunctionalRequirements"
+        },
+        "deployment_guide": {
+          "location": "deployment/DEPLOYMENT.md",
+          "responsibility": "Human-readable guide",
+          "contents": [
+            "Quick start (docker build, docker run)",
+            "Image details",
+            "Environment variables",
+            "Troubleshooting"
+          ]
+        },
+        "deployment_checklist": {
+          "location": "deployment/CHECKLIST.md",
+          "responsibility": "Pre-deployment validation",
+          "sections": [
+            "Pre-Deployment",
+            "Security Checks",
+            "Performance Validation",
+            "Documentation",
+            "Testing",
+            "Post-Deployment"
+          ]
+        }
+      },
+      "writing_order": [
+        "1. Dockerfile (core, most critical)",
+        "2. docker-compose.yml (orchestration)",
+        "3. .dockerignore (optimization)",
+        "4. .env.template (configuration)",
+        "5. DEPLOYMENT.md (guide)",
+        "6. CHECKLIST.md (validation)"
+      ],
+      "error_handling": {
+        "directory_creation": "fs.mkdirSync(deploymentDir, { recursive: true })",
+        "file_writing": "Use try-catch for each file, log errors",
+        "return_value": "Array of written filenames for orchestrator tracking"
+      },
+      "validation": [
+        "All files written successfully",
+        "No empty files",
+        "YAML syntax valid (docker-compose.yml)",
+        "Dockerfile has FROM and ENTRYPOINT",
+        "Paths are correct in Dockerfile"
+      ],
+      "success_rate": 0.98,
+      "tags": ["deployment", "docker", "file-writing", "orchestration"],
+      "quality_metrics": {
+        "workflow_completeness": 100,
+        "code_efficiency": 85,
+        "feature_completeness": 50,
+        "test_quality": 70,
+        "resource_efficiency": 95,
+        "overall_score": 80,
+        "token_cost": "very_low",
+        "complexity": "very_low",
+        "priority": "CRITICAL",
+        "note": "High success rate, near-zero token overhead. Essential for Phase 10 completion."
+      }
+    },
+    {
+      "id": "strat-004-code-generation-syntax-validation",
+      "name": "Code Generation Syntax Validation Strategy",
+      "description": "Systematic approach to prevent syntax errors in generated code during Phases 6 and 10",
+      "pattern": {
+        "problem": "Template literals, strings, and other syntax can be incorrectly escaped or formatted during code generation",
+        "example_error": "Escaped backticks (\\`) in template literals cause SyntaxError: Invalid or unexpected token",
+        "root_cause": "String manipulation in code generators without proper escaping awareness"
+      },
+      "phases": {
+        "phase_6_implementation": {
+          "name": "Code Generation",
+          "critical_checks": [
+            "Template literals MUST use plain backticks (`), never escaped (\\`)",
+            "Validate all generated template strings before output",
+            "Use AST parsing to detect syntax errors before writing files",
+            "Quote all variable interpolations: ${variable} (not \\${variable})"
+          ]
+        },
+        "phase_10_deployment": {
+          "name": "Artifact Generation",
+          "critical_checks": [
+            "All generated files must pass Node.js syntax check: node -c",
+            "Docker-related files should validate Dockerfile syntax",
+            "JSON files should validate with JSON.parse()",
+            "Shell scripts should validate with bash -n"
+          ]
+        }
+      },
+      "validation_techniques": [
+        "Pre-execution syntax validation: `node -c file.js`",
+        "AST parsing: Use acorn or esprima to parse generated code",
+        "Unit tests on code generation functions",
+        "Generate-and-test cycle: create files, validate, report errors"
+      ],
+      "implementation": {
+        "timing": "After code generation, before file writing",
+        "error_handling": "Collect all syntax errors, report with line numbers and suggestions",
+        "recovery": "Log detailed error context for Knowledge Base learning"
+      },
+      "success_indicators": [
+        "All generated files pass syntax validation before use",
+        "Zero SyntaxError exceptions during workflow execution",
+        "Template literal errors reduced to 0%"
+      ],
+      "tools_and_libs": [
+        "acorn (JavaScript AST parsing)",
+        "yaml (for YAML validation)",
+        "JSON.parse (for JSON validation)",
+        "child_process.execSync (for node -c)"
+      ],
+      "success_rate": 0.98,
+      "tags": ["code-generation", "syntax-validation", "quality-assurance", "phase-6", "phase-10"],
+      "quality_metrics": {
+        "workflow_completeness": 100,
+        "code_efficiency": 90,
+        "feature_completeness": 0,
+        "test_quality": 85,
+        "resource_efficiency": 80,
+        "overall_score": 91,
+        "token_cost": "low",
+        "complexity": "low",
+        "priority": "CRITICAL",
+        "note": "Prevents entire workflow failure from simple syntax mistakes. Early detection saves debugging time."
+      }
+    }
+  ]
+}

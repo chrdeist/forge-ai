@@ -1,0 +1,306 @@
+{
+  "requirementName": "hello-world",
+  "status": "FAILED",
+  "startTime": "2025-12-07T17:10:08.354Z",
+  "endTime": "2025-12-07T17:10:13.979Z",
+  "currentPhase": {
+    "number": 10,
+    "name": "Deployment & Containerization",
+    "startTime": "2025-12-07T17:10:13.942Z",
+    "status": "RUNNING"
+  },
+  "currentAgent": "DeployAgent",
+  "completedPhases": [
+    {
+      "number": 1,
+      "name": "Parse Requirement",
+      "startTime": "2025-12-07T17:10:08.383Z",
+      "endTime": "2025-12-07T17:10:08.399Z",
+      "status": "COMPLETED",
+      "result": {
+        "duration": "0.01s"
+      }
+    },
+    {
+      "number": 2,
+      "name": "Extract Functional Requirements",
+      "startTime": "2025-12-07T17:10:08.416Z",
+      "endTime": "2025-12-07T17:10:08.920Z",
+      "status": "COMPLETED",
+      "result": {
+        "duration": "0.50s",
+        "itemsProcessed": 4
+      }
+    },
+    {
+      "number": 3,
+      "name": "Technical Specification",
+      "startTime": "2025-12-07T17:10:08.926Z",
+      "endTime": "2025-12-07T17:10:09.733Z",
+      "status": "COMPLETED",
+      "result": {
+        "duration": "0.80s",
+        "itemsProcessed": 1
+      }
+    },
+    {
+      "number": 4,
+      "name": "Architecture & Design",
+      "startTime": "2025-12-07T17:10:09.736Z",
+      "endTime": "2025-12-07T17:10:10.339Z",
+      "status": "COMPLETED",
+      "result": {
+        "duration": "0.60s"
+      }
+    },
+    {
+      "number": 5,
+      "name": "Test Specifications",
+      "startTime": "2025-12-07T17:10:10.356Z",
+      "endTime": "2025-12-07T17:10:11.065Z",
+      "status": "COMPLETED",
+      "result": {
+        "duration": "0.70s",
+        "itemsProcessed": 6
+      }
+    },
+    {
+      "number": 6,
+      "name": "Implementation",
+      "startTime": "2025-12-07T17:10:11.079Z",
+      "endTime": "2025-12-07T17:10:12.286Z",
+      "status": "COMPLETED",
+      "result": {
+        "duration": "1.20s",
+        "itemsProcessed": 2
+      }
+    },
+    {
+      "number": 7,
+      "name": "Code Review",
+      "startTime": "2025-12-07T17:10:12.290Z",
+      "endTime": "2025-12-07T17:10:12.792Z",
+      "status": "COMPLETED",
+      "result": {
+        "duration": "0.50s"
+      }
+    },
+    {
+      "number": 8,
+      "name": "Documentation",
+      "startTime": "2025-12-07T17:10:12.802Z",
+      "endTime": "2025-12-07T17:10:13.506Z",
+      "status": "COMPLETED",
+      "result": {
+        "duration": "0.70s"
+      }
+    },
+    {
+      "number": 9,
+      "name": "Persist Learning & Metrics",
+      "startTime": "2025-12-07T17:10:13.508Z",
+      "endTime": "2025-12-07T17:10:13.925Z",
+      "status": "COMPLETED",
+      "result": {
+        "duration": "0.40s"
+      }
+    }
+  ],
+  "timeline": [
+    {
+      "timestamp": "2025-12-07T17:10:08.384Z",
+      "event": "PHASE_START",
+      "phase": 1,
+      "agent": "Parse Requirement",
+      "context": null,
+      "result": {}
+    },
+    {
+      "timestamp": "2025-12-07T17:10:08.399Z",
+      "event": "PHASE_COMPLETE",
+      "phase": 1,
+      "agent": "Parse Requirement",
+      "context": null,
+      "result": {
+        "duration": "0.01s"
+      }
+    },
+    {
+      "timestamp": "2025-12-07T17:10:08.416Z",
+      "event": "PHASE_START",
+      "phase": 2,
+      "agent": "Extract Functional Requirements",
+      "context": "FunctionalRequirementsAgent",
+      "result": {}
+    },
+    {
+      "timestamp": "2025-12-07T17:10:08.920Z",
+      "event": "PHASE_COMPLETE",
+      "phase": 2,
+      "agent": "Extract Functional Requirements",
+      "context": null,
+      "result": {
+        "duration": "0.50s",
+        "itemsProcessed": 4
+      }
+    },
+    {
+      "timestamp": "2025-12-07T17:10:08.926Z",
+      "event": "PHASE_START",
+      "phase": 3,
+      "agent": "Technical Specification",
+      "context": "TechnicalRequirementsAgent",
+      "result": {}
+    },
+    {
+      "timestamp": "2025-12-07T17:10:09.733Z",
+      "event": "PHASE_COMPLETE",
+      "phase": 3,
+      "agent": "Technical Specification",
+      "context": null,
+      "result": {
+        "duration": "0.80s",
+        "itemsProcessed": 1
+      }
+    },
+    {
+      "timestamp": "2025-12-07T17:10:09.736Z",
+      "event": "PHASE_START",
+      "phase": 4,
+      "agent": "Architecture & Design",
+      "context": "ArchitectureAgent",
+      "result": {}
+    },
+    {
+      "timestamp": "2025-12-07T17:10:10.339Z",
+      "event": "PHASE_COMPLETE",
+      "phase": 4,
+      "agent": "Architecture & Design",
+      "context": null,
+      "result": {
+        "duration": "0.60s"
+      }
+    },
+    {
+      "timestamp": "2025-12-07T17:10:10.356Z",
+      "event": "PHASE_START",
+      "phase": 5,
+      "agent": "Test Specifications",
+      "context": "TestAgent",
+      "result": {}
+    },
+    {
+      "timestamp": "2025-12-07T17:10:11.065Z",
+      "event": "PHASE_COMPLETE",
+      "phase": 5,
+      "agent": "Test Specifications",
+      "context": null,
+      "result": {
+        "duration": "0.70s",
+        "itemsProcessed": 6
+      }
+    },
+    {
+      "timestamp": "2025-12-07T17:10:11.079Z",
+      "event": "PHASE_START",
+      "phase": 6,
+      "agent": "Implementation",
+      "context": "ImplementationAgent",
+      "result": {}
+    },
+    {
+      "timestamp": "2025-12-07T17:10:12.286Z",
+      "event": "PHASE_COMPLETE",
+      "phase": 6,
+      "agent": "Implementation",
+      "context": null,
+      "result": {
+        "duration": "1.20s",
+        "itemsProcessed": 2
+      }
+    },
+    {
+      "timestamp": "2025-12-07T17:10:12.290Z",
+      "event": "PHASE_START",
+      "phase": 7,
+      "agent": "Code Review",
+      "context": "ReviewAgent",
+      "result": {}
+    },
+    {
+      "timestamp": "2025-12-07T17:10:12.792Z",
+      "event": "PHASE_COMPLETE",
+      "phase": 7,
+      "agent": "Code Review",
+      "context": null,
+      "result": {
+        "duration": "0.50s"
+      }
+    },
+    {
+      "timestamp": "2025-12-07T17:10:12.802Z",
+      "event": "PHASE_START",
+      "phase": 8,
+      "agent": "Documentation",
+      "context": "DocumentationAgent",
+      "result": {}
+    },
+    {
+      "timestamp": "2025-12-07T17:10:13.506Z",
+      "event": "PHASE_COMPLETE",
+      "phase": 8,
+      "agent": "Documentation",
+      "context": null,
+      "result": {
+        "duration": "0.70s"
+      }
+    },
+    {
+      "timestamp": "2025-12-07T17:10:13.508Z",
+      "event": "PHASE_START",
+      "phase": 9,
+      "agent": "Persist Learning & Metrics",
+      "context": null,
+      "result": {}
+    },
+    {
+      "timestamp": "2025-12-07T17:10:13.925Z",
+      "event": "PHASE_COMPLETE",
+      "phase": 9,
+      "agent": "Persist Learning & Metrics",
+      "context": null,
+      "result": {
+        "duration": "0.40s"
+      }
+    },
+    {
+      "timestamp": "2025-12-07T17:10:13.942Z",
+      "event": "PHASE_START",
+      "phase": 10,
+      "agent": "Deployment & Containerization",
+      "context": "DeployAgent",
+      "result": {}
+    },
+    {
+      "timestamp": "2025-12-07T17:10:13.977Z",
+      "event": "ERROR",
+      "phase": null,
+      "agent": "E2E Orchestrator",
+      "context": {
+        "message": "files.find is not a function",
+        "hasStack": true
+      },
+      "result": {}
+    }
+  ],
+  "errors": [
+    {
+      "timestamp": "2025-12-07T17:10:13.976Z",
+      "agent": "E2E Orchestrator",
+      "phase": 10,
+      "message": "files.find is not a function",
+      "stack": "TypeError: files.find is not a function\n    at DeployAgent._findMainFileFromGenerated (file:///workspaces/forge-ai/packages/agents/deploy-agent.mjs:318:27)\n    at DeployAgent._generateDeployScript (file:///workspaces/forge-ai/packages/agents/deploy-agent.mjs:716:29)\n    at DeployAgent._writeDeploymentArtifacts (file:///workspaces/forge-ai/packages/agents/deploy-agent.mjs:1048:33)\n    at DeployAgent.execute (file:///workspaces/forge-ai/packages/agents/deploy-agent.mjs:141:39)\n    at HelloWorldE2E._phase10_deployment (file:///workspaces/forge-ai/projects/hello-world/sources/e2e-full.mjs:823:40)\n    at HelloWorldE2E.run (file:///workspaces/forge-ai/projects/hello-world/sources/e2e-full.mjs:105:18)"
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,143 @@
+{
+  "requirementName": "hello-world",
+  "status": "IN_PROGRESS",
+  "startTime": "2025-12-07T14:34:05.496Z",
+  "endTime": null,
+  "currentPhase": {
+    "number": 5,
+    "name": "Test Specifications",
+    "startTime": "2025-12-07T14:34:07.509Z",
+    "status": "RUNNING"
+  },
+  "currentAgent": "TestAgent",
+  "completedPhases": [
+    {
+      "number": 1,
+      "name": "Parse Requirement",
+      "startTime": "2025-12-07T14:34:05.520Z",
+      "endTime": "2025-12-07T14:34:05.522Z",
+      "status": "COMPLETED",
+      "result": {
+        "duration": "0.00s"
+      }
+    },
+    {
+      "number": 2,
+      "name": "Extract Functional Requirements",
+      "startTime": "2025-12-07T14:34:05.531Z",
+      "endTime": "2025-12-07T14:34:06.049Z",
+      "status": "COMPLETED",
+      "result": {
+        "duration": "0.51s",
+        "itemsProcessed": 4
+      }
+    },
+    {
+      "number": 3,
+      "name": "Technical Specification",
+      "startTime": "2025-12-07T14:34:06.077Z",
+      "endTime": "2025-12-07T14:34:06.893Z",
+      "status": "COMPLETED",
+      "result": {
+        "duration": "0.81s",
+        "itemsProcessed": 1
+      }
+    },
+    {
+      "number": 4,
+      "name": "Architecture & Design",
+      "startTime": "2025-12-07T14:34:06.895Z",
+      "endTime": "2025-12-07T14:34:07.508Z",
+      "status": "COMPLETED",
+      "result": {
+        "duration": "0.60s"
+      }
+    }
+  ],
+  "timeline": [
+    {
+      "timestamp": "2025-12-07T14:34:05.520Z",
+      "event": "PHASE_START",
+      "phase": 1,
+      "agent": "Parse Requirement",
+      "context": null,
+      "result": {}
+    },
+    {
+      "timestamp": "2025-12-07T14:34:05.522Z",
+      "event": "PHASE_COMPLETE",
+      "phase": 1,
+      "agent": "Parse Requirement",
+      "context": null,
+      "result": {
+        "duration": "0.00s"
+      }
+    },
+    {
+      "timestamp": "2025-12-07T14:34:05.531Z",
+      "event": "PHASE_START",
+      "phase": 2,
+      "agent": "Extract Functional Requirements",
+      "context": "FunctionalRequirementsAgent",
+      "result": {}
+    },
+    {
+      "timestamp": "2025-12-07T14:34:06.049Z",
+      "event": "PHASE_COMPLETE",
+      "phase": 2,
+      "agent": "Extract Functional Requirements",
+      "context": null,
+      "result": {
+        "duration": "0.51s",
+        "itemsProcessed": 4
+      }
+    },
+    {
+      "timestamp": "2025-12-07T14:34:06.077Z",
+      "event": "PHASE_START",
+      "phase": 3,
+      "agent": "Technical Specification",
+      "context": "TechnicalRequirementsAgent",
+      "result": {}
+    },
+    {
+      "timestamp": "2025-12-07T14:34:06.893Z",
+      "event": "PHASE_COMPLETE",
+      "phase": 3,
+      "agent": "Technical Specification",
+      "context": null,
+      "result": {
+        "duration": "0.81s",
+        "itemsProcessed": 1
+      }
+    },
+    {
+      "timestamp": "2025-12-07T14:34:06.895Z",
+      "event": "PHASE_START",
+      "phase": 4,
+      "agent": "Architecture & Design",
+      "context": "ArchitectureAgent",
+      "result": {}
+    },
+    {
+      "timestamp": "2025-12-07T14:34:07.508Z",
+      "event": "PHASE_COMPLETE",
+      "phase": 4,
+      "agent": "Architecture & Design",
+      "context": null,
+      "result": {
+        "duration": "0.60s"
+      }
+    },
+    {
+      "timestamp": "2025-12-07T14:34:07.509Z",
+      "event": "PHASE_START",
+      "phase": 5,
+      "agent": "Test Specifications",
+      "context": "TestAgent",
+      "result": {}
+    }
+  ],
+  "errors": [],
+  "warnings": []
+}
