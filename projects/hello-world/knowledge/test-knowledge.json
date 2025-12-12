@@ -1,0 +1,26 @@
+{
+  "version": "1.0",
+  "agentName": "TestAgent",
+  "createdAt": "2025-12-12T23:28:48.677Z",
+  "patterns": [
+    {
+      "id": "pattern_1765582128717",
+      "timestamp": "2025-12-12T23:28:48.718Z",
+      "requirementName": "hello-world-feature-3",
+      "name": "test-spec-generation",
+      "category": "generic-pattern",
+      "description": "Generated 92 unit, 2 integration, 2 e2e specs",
+      "successRate": 0.8
+    },
+    {
+      "id": "pattern_1765582337457",
+      "timestamp": "2025-12-12T23:32:17.457Z",
+      "requirementName": "hello-world-feature-3",
+      "name": "test-spec-generation",
+      "category": "generic-pattern",
+      "description": "Generated 92 unit, 2 integration, 2 e2e specs",
+      "successRate": 0.8
+    }
+  ],
+  "strategies": []
+}

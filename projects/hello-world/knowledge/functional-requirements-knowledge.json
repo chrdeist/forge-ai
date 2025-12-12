@@ -1,0 +1,26 @@
+{
+  "version": "1.0",
+  "agentName": "FunctionalRequirementsAgent",
+  "createdAt": "2025-12-12T23:28:48.399Z",
+  "patterns": [
+    {
+      "id": "pattern_1765582128449",
+      "timestamp": "2025-12-12T23:28:48.449Z",
+      "requirementName": "hello-world-feature-3",
+      "name": "functional-requirements-extraction",
+      "category": "generic-pattern",
+      "description": "Successfully extracted 92 functional requirements",
+      "successRate": 0.9
+    },
+    {
+      "id": "pattern_1765582337180",
+      "timestamp": "2025-12-12T23:32:17.180Z",
+      "requirementName": "hello-world-feature-3",
+      "name": "functional-requirements-extraction",
+      "category": "generic-pattern",
+      "description": "Successfully extracted 92 functional requirements",
+      "successRate": 0.9
+    }
+  ],
+  "strategies": []
+}

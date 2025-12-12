@@ -1,0 +1,26 @@
+{
+  "version": "1.0",
+  "agentName": "TechnicalRequirementsAgent",
+  "createdAt": "2025-12-12T23:28:48.499Z",
+  "patterns": [
+    {
+      "id": "pattern_1765582128529",
+      "timestamp": "2025-12-12T23:28:48.529Z",
+      "requirementName": "hello-world-feature-3",
+      "name": "api-specification-generation",
+      "category": "generic-pattern",
+      "description": "Generated technical spec with 92 APIs from functional requirements",
+      "successRate": 0.85
+    },
+    {
+      "id": "pattern_1765582337295",
+      "timestamp": "2025-12-12T23:32:17.295Z",
+      "requirementName": "hello-world-feature-3",
+      "name": "api-specification-generation",
+      "category": "generic-pattern",
+      "description": "Generated technical spec with 92 APIs from functional requirements",
+      "successRate": 0.85
+    }
+  ],
+  "strategies": []
+}

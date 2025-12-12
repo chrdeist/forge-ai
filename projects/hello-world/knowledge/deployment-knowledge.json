@@ -1,0 +1,26 @@
+{
+  "version": "1.0",
+  "agentName": "DeploymentAgent",
+  "createdAt": "2025-12-12T23:29:41.500Z",
+  "patterns": [
+    {
+      "id": "pattern_1765582181554",
+      "timestamp": "2025-12-12T23:29:41.554Z",
+      "requirementName": "hello-world-feature-3",
+      "name": "deployment-config-generation",
+      "category": "generic-pattern",
+      "description": "Generated deployment configs for targets: Docker, Kubernetes, Cloud (AWS/Azure/GCP)",
+      "successRate": 0.8
+    },
+    {
+      "id": "pattern_1765582388096",
+      "timestamp": "2025-12-12T23:33:08.096Z",
+      "requirementName": "hello-world-feature-3",
+      "name": "deployment-config-generation",
+      "category": "generic-pattern",
+      "description": "Generated deployment configs for targets: Docker, Kubernetes, Cloud (AWS/Azure/GCP)",
+      "successRate": 0.8
+    }
+  ],
+  "strategies": []
+}
