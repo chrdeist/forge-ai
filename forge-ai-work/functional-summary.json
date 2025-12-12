@@ -1,0 +1,30 @@
+{
+  "name": "hello-world",
+  "version": "1.0",
+  "priority": "high",
+  "userStory": "Als Entwickler möchte ich ein CLI-Tool haben, das eine \"Hello World\"-Nachricht ausgibt,\nDAMIT ich das Forge-AI-Framework und seinen Software-Lifecycle-Prozess testen und validieren kann.",
+  "inScope": [
+    "In Scope:\n  - Ein Node.js CLI-Tool, das \"Hello, World!\" auf der Konsole ausgibt.\n  - Akzeptiert optional einen Namen als Parameter: `hello-world --name=Bob` → `Hello, Bob!`\n  - Unit-Tests für die Kernlogik.\n  - Vollständige Dokumentation.",
+    "Out of Scope:\n  - Datenbankintegration.\n  - Externe API-Calls.\n  - Konfigurationsdateien."
+  ],
+  "outOfScope": [
+    "Out of Scope:\n  - Datenbankintegration.\n  - Externe API-Calls.\n  - Konfigurationsdateien."
+  ],
+  "functionalRequirements": [
+    "Das Tool gibt bei Aufruf ohne Parameter \"Hello, World!\" aus.",
+    "Das Tool akzeptiert einen optionalen `--name` Parameter.",
+    "Bei Übergabe von `--name=XYZ` gibt das Tool \"Hello, XYZ!\" aus.",
+    "Bei Übergabe eines leeren Namens (`--name=`) wird \"Hello, World!\" ausgegeben.",
+    "Das Tool gibt eine Hilfemeldung bei `--help` aus.",
+    "Der Exit-Code ist 0 bei erfolgreichem Durchlauf."
+  ],
+  "acceptanceCriteria": [],
+  "interfaces": "",
+  "nonFunctionalRequirements": "",
+  "uiInteraction": "- Relevante Views/Komponenten:\n  - CLI / Console-Output.\n- Neue/angepasste Elemente:\n  - Einfache Console-Ausgabe.\n- Wichtiges Verhalten:\n  - Synchroner Ablauf, keine Async-Operationen für v1.",
+  "testIdeas": "- E2E (z.B. Node.js Child Process):\n  - Aufruf ohne Parameter → Ausgabe korrekt\n  - Aufruf mit `--name=Bob` → Ausgabe korrekt\n  - Aufruf mit `--help` → Hilfe angezeigt\n- Unit/Integration:\n  - `formatGreeting(\"\")` → \"Hello, World!\"\n  - `formatGreeting(\"Alice\")` → \"Hello, Alice!\"\n  - `parseArgs([\"--name=Bob\"])` → `{name: \"Bob\"}`\n- Manuelle Checks:\n  - Keine.",
+  "affectedComponents": [],
+  "artifacts": [],
+  "successCriteria": [],
+  "buildCommands": []
+}

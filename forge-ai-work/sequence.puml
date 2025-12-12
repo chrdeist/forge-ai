@@ -1,0 +1,41 @@
+@startuml
+title hello-world - Execution Flow
+
+actor Client
+participant "Main Module" as Main
+participant "dasToolGibtBeiAufrufOhneParameterHelloWorldAus" as API0
+participant "dasToolAkzeptiertEinenOptionalenNameParameter" as API1
+participant "beiBergabeVonNamexyzGibtDasToolHelloXyzAus" as API2
+participant "beiBergabeEinesLeerenNamensNameWirdHelloWorldAusgegeben" as API3
+participant "dasToolGibtEineHilfemeldungBeiHelpAus" as API4
+participant "derExitcodeIst0BeiErfolgreichemDurchlauf" as API5
+
+Client -> Main: invoke
+activate Main
+Main -> API0: dasToolGibtBeiAufrufOhneParameterHelloWorldAus()
+activate API0
+API0 --> Main: result
+deactivate API0
+Main -> API1: dasToolAkzeptiertEinenOptionalenNameParameter()
+activate API1
+API1 --> Main: result
+deactivate API1
+Main -> API2: beiBergabeVonNamexyzGibtDasToolHelloXyzAus()
+activate API2
+API2 --> Main: result
+deactivate API2
+Main -> API3: beiBergabeEinesLeerenNamensNameWirdHelloWorldAusgegeben()
+activate API3
+API3 --> Main: result
+deactivate API3
+Main -> API4: dasToolGibtEineHilfemeldungBeiHelpAus()
+activate API4
+API4 --> Main: result
+deactivate API4
+Main -> API5: derExitcodeIst0BeiErfolgreichemDurchlauf()
+activate API5
+API5 --> Main: result
+deactivate API5
+Main --> Client: output
+deactivate Main
+@enduml

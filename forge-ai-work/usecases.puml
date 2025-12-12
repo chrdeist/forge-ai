@@ -1,0 +1,23 @@
+@startuml
+title hello-world - Use Cases
+
+left to right direction
+
+actor User
+rectangle System {
+  usecase "Das Tool gibt bei Aufruf ohne Parameter "Hello, World!" aus." as UC_das_tool_gibt_bei_au
+  usecase "Das Tool akzeptiert einen optionalen `--name` Parameter." as UC_das_tool_akzeptiert_
+  usecase "Bei Übergabe von `--name=XYZ` gibt das Tool "Hello, XYZ!" aus." as UC_bei__bergabe_von____
+  usecase "Bei Übergabe eines leeren Namens (`--name=`) wird "Hello, World!" ausgegeben." as UC_bei__bergabe_eines_l
+  usecase "Das Tool gibt eine Hilfemeldung bei `--help` aus." as UC_das_tool_gibt_eine_h
+  usecase "Der Exit-Code ist 0 bei erfolgreichem Durchlauf." as UC_der_exit_code_ist_0_
+}
+
+User --> UC_das_tool_gibt_bei_au
+User --> UC_das_tool_akzeptiert_
+User --> UC_bei__bergabe_von____
+User --> UC_bei__bergabe_eines_l
+User --> UC_das_tool_gibt_eine_h
+User --> UC_der_exit_code_ist_0_
+
+@enduml

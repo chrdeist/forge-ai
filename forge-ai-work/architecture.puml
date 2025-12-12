@@ -1,0 +1,10 @@
+@startuml
+!include <C4/C4_Component>
+
+title hello-world - Component Architecture
+
+Container_Boundary(c1, "System") {
+}
+
+Rel(comp0, comp1, "depends on")
+@enduml

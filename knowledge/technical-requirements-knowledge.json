@@ -1,0 +1,53 @@
+{
+  "version": "1.0",
+  "agentName": "TechnicalRequirementsAgent",
+  "createdAt": "2025-12-12T21:02:13.834Z",
+  "patterns": [
+    {
+      "id": "pattern_1765573333851",
+      "timestamp": "2025-12-12T21:02:13.851Z",
+      "requirementName": "hello-world",
+      "name": "api-design",
+      "category": "technical-design",
+      "description": "Generated 6 clear API specifications",
+      "successRate": 0.85
+    },
+    {
+      "id": "pattern_1765573333852",
+      "timestamp": "2025-12-12T21:02:13.852Z",
+      "requirementName": "hello-world",
+      "name": "comprehensive-error-handling",
+      "category": "technical-design",
+      "description": "Defined 3 error cases",
+      "successRate": 0.8
+    },
+    {
+      "id": "pattern_1765573333853",
+      "timestamp": "2025-12-12T21:02:13.853Z",
+      "requirementName": "hello-world",
+      "name": "requirement-test-mapping",
+      "category": "testing-strategy",
+      "description": "Mapped 6 requirements to tests",
+      "successRate": 0.9
+    },
+    {
+      "id": "pattern_1765574634840",
+      "timestamp": "2025-12-12T21:23:54.840Z",
+      "requirementName": "hello-world",
+      "name": "api-specification-generation",
+      "category": "generic-pattern",
+      "description": "Generated technical spec with 94 APIs from functional requirements",
+      "successRate": 0.85
+    },
+    {
+      "id": "pattern_1765574640431",
+      "timestamp": "2025-12-12T21:24:00.431Z",
+      "requirementName": "hello-world",
+      "name": "api-specification-generation",
+      "category": "generic-pattern",
+      "description": "Generated technical spec with 94 APIs from functional requirements",
+      "successRate": 0.85
+    }
+  ],
+  "strategies": []
+}

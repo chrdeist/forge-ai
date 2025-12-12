@@ -1,0 +1,2843 @@
+{
+  "version": "1.0",
+  "created": "2025-12-12T21:23:54.795Z",
+  "project": {
+    "name": "hello-world",
+    "path": "/workspaces/forge-ai"
+  },
+  "functional": {
+    "timestamp": "2025-12-12T21:24:00.405Z",
+    "sourceFile": "/workspaces/forge-ai/projects/hello-world/requirements/hello-world-requirements.md",
+    "extractedBy": "FunctionalRequirementsAgent",
+    "data": {
+      "metadata": {
+        "name": "hello-world",
+        "priority": "high",
+        "owner": "Forge AI Team"
+      },
+      "sections": {
+        "1. kontext / motivation": [],
+        "2. user story": [],
+        "3. scope": [],
+        "4. funktionale anforderungen": [],
+        "5. schnittstellen / apis / datenstrukturen": [],
+        "6. nicht-funktionale anforderungen / randbedingungen": [],
+        "7. ui / interaktion": [],
+        "8. akzeptanzkriterien (testbar)": [],
+        "9. testideen": [],
+        "10. auswirkungen auf bestehende komponenten": [],
+        "11. definition of done (dod)": [],
+        "12. offene fragen / blockers": []
+      },
+      "requirements": [
+        {
+          "text": "Hintergrund: Erstes, extrem einfaches Test-Feature für das Forge-AI-Framework.",
+          "type": "bullet",
+          "section": "1. kontext / motivation"
+        },
+        {
+          "text": "Problem heute: Kein funktionierendes End-to-End-Beispiel für die Software-Lifecycle-Pipeline.",
+          "type": "bullet",
+          "section": "1. kontext / motivation"
+        },
+        {
+          "text": "Warum jetzt wichtig: Validierung der gesamten Orchestrator-, Agent- und Reporting-Pipeline.",
+          "type": "bullet",
+          "section": "1. kontext / motivation"
+        },
+        {
+          "text": "In Scope:",
+          "type": "bullet",
+          "section": "3. scope"
+        },
+        {
+          "text": "Ein Node.js CLI-Tool, das \"Hello, World!\" auf der Konsole ausgibt.",
+          "type": "bullet",
+          "section": "3. scope"
+        },
+        {
+          "text": "Akzeptiert optional einen Namen als Parameter: `hello-world --name=Bob` → `Hello, Bob!`",
+          "type": "bullet",
+          "section": "3. scope"
+        },
+        {
+          "text": "Unit-Tests für die Kernlogik.",
+          "type": "bullet",
+          "section": "3. scope"
+        },
+        {
+          "text": "Vollständige Dokumentation.",
+          "type": "bullet",
+          "section": "3. scope"
+        },
+        {
+          "text": "Out of Scope:",
+          "type": "bullet",
+          "section": "3. scope"
+        },
+        {
+          "text": "Datenbankintegration.",
+          "type": "bullet",
+          "section": "3. scope"
+        },
+        {
+          "text": "Externe API-Calls.",
+          "type": "bullet",
+          "section": "3. scope"
+        },
+        {
+          "text": "Konfigurationsdateien.",
+          "type": "bullet",
+          "section": "3. scope"
+        },
+        {
+          "text": "Das Tool gibt bei Aufruf ohne Parameter \"Hello, World!\" aus.",
+          "type": "checkbox",
+          "section": "4. funktionale anforderungen"
+        },
+        {
+          "text": "[ ] Das Tool gibt bei Aufruf ohne Parameter \"Hello, World!\" aus.",
+          "type": "bullet",
+          "section": "4. funktionale anforderungen"
+        },
+        {
+          "text": "Das Tool akzeptiert einen optionalen `--name` Parameter.",
+          "type": "checkbox",
+          "section": "4. funktionale anforderungen"
+        },
+        {
+          "text": "[ ] Das Tool akzeptiert einen optionalen `--name` Parameter.",
+          "type": "bullet",
+          "section": "4. funktionale anforderungen"
+        },
+        {
+          "text": "Bei Übergabe von `--name=XYZ` gibt das Tool \"Hello, XYZ!\" aus.",
+          "type": "checkbox",
+          "section": "4. funktionale anforderungen"
+        },
+        {
+          "text": "[ ] Bei Übergabe von `--name=XYZ` gibt das Tool \"Hello, XYZ!\" aus.",
+          "type": "bullet",
+          "section": "4. funktionale anforderungen"
+        },
+        {
+          "text": "Bei Übergabe eines leeren Namens (`--name=`) wird \"Hello, World!\" ausgegeben.",
+          "type": "checkbox",
+          "section": "4. funktionale anforderungen"
+        },
+        {
+          "text": "[ ] Bei Übergabe eines leeren Namens (`--name=`) wird \"Hello, World!\" ausgegeben.",
+          "type": "bullet",
+          "section": "4. funktionale anforderungen"
+        },
+        {
+          "text": "Das Tool gibt eine Hilfemeldung bei `--help` aus.",
+          "type": "checkbox",
+          "section": "4. funktionale anforderungen"
+        },
+        {
+          "text": "[ ] Das Tool gibt eine Hilfemeldung bei `--help` aus.",
+          "type": "bullet",
+          "section": "4. funktionale anforderungen"
+        },
+        {
+          "text": "Der Exit-Code ist 0 bei erfolgreichem Durchlauf.",
+          "type": "checkbox",
+          "section": "4. funktionale anforderungen"
+        },
+        {
+          "text": "[ ] Der Exit-Code ist 0 bei erfolgreichem Durchlauf.",
+          "type": "bullet",
+          "section": "4. funktionale anforderungen"
+        },
+        {
+          "text": "CLI Interface:",
+          "type": "bullet",
+          "section": "5. schnittstellen / apis / datenstrukturen"
+        },
+        {
+          "text": "Kommando: `node src/helloWorld.js [--name=<string>] [--help]`",
+          "type": "bullet",
+          "section": "5. schnittstellen / apis / datenstrukturen"
+        },
+        {
+          "text": "Funktion: `formatGreeting(name?: string): string`",
+          "type": "bullet",
+          "section": "5. schnittstellen / apis / datenstrukturen"
+        },
+        {
+          "text": "Input: optionaler Name (String)",
+          "type": "bullet",
+          "section": "5. schnittstellen / apis / datenstrukturen"
+        },
+        {
+          "text": "Output: Greeting-String",
+          "type": "bullet",
+          "section": "5. schnittstellen / apis / datenstrukturen"
+        },
+        {
+          "text": "Datenmodelle:",
+          "type": "bullet",
+          "section": "5. schnittstellen / apis / datenstrukturen"
+        },
+        {
+          "text": "Input-Argument: Name (optional, String)",
+          "type": "bullet",
+          "section": "5. schnittstellen / apis / datenstrukturen"
+        },
+        {
+          "text": "Output: Console-String",
+          "type": "bullet",
+          "section": "5. schnittstellen / apis / datenstrukturen"
+        },
+        {
+          "text": "Performance / Skalierung:",
+          "type": "bullet",
+          "section": "6. nicht-funktionale anforderungen / randbedingungen"
+        },
+        {
+          "text": "Muss innerhalb von 100ms ausgeführt werden.",
+          "type": "bullet",
+          "section": "6. nicht-funktionale anforderungen / randbedingungen"
+        },
+        {
+          "text": "UX / Usability:",
+          "type": "bullet",
+          "section": "6. nicht-funktionale anforderungen / randbedingungen"
+        },
+        {
+          "text": "Klare, einfache Ausgabe. Keine komplexen Fehlerausgaben nötig.",
+          "type": "bullet",
+          "section": "6. nicht-funktionale anforderungen / randbedingungen"
+        },
+        {
+          "text": "Technische Einschränkungen:",
+          "type": "bullet",
+          "section": "6. nicht-funktionale anforderungen / randbedingungen"
+        },
+        {
+          "text": "Nur Node.js (>=18.0.0).",
+          "type": "bullet",
+          "section": "6. nicht-funktionale anforderungen / randbedingungen"
+        },
+        {
+          "text": "Keine externen Dependencies.",
+          "type": "bullet",
+          "section": "6. nicht-funktionale anforderungen / randbedingungen"
+        },
+        {
+          "text": "Sonstiges:",
+          "type": "bullet",
+          "section": "6. nicht-funktionale anforderungen / randbedingungen"
+        },
+        {
+          "text": "Code muss vollständig von Agenten generierbar sein (keine Hardcodes).",
+          "type": "bullet",
+          "section": "6. nicht-funktionale anforderungen / randbedingungen"
+        },
+        {
+          "text": "Relevante Views/Komponenten:",
+          "type": "bullet",
+          "section": "7. ui / interaktion"
+        },
+        {
+          "text": "CLI / Console-Output.",
+          "type": "bullet",
+          "section": "7. ui / interaktion"
+        },
+        {
+          "text": "Neue/angepasste Elemente:",
+          "type": "bullet",
+          "section": "7. ui / interaktion"
+        },
+        {
+          "text": "Einfache Console-Ausgabe.",
+          "type": "bullet",
+          "section": "7. ui / interaktion"
+        },
+        {
+          "text": "Wichtiges Verhalten:",
+          "type": "bullet",
+          "section": "7. ui / interaktion"
+        },
+        {
+          "text": "Synchroner Ablauf, keine Async-Operationen für v1.",
+          "type": "bullet",
+          "section": "7. ui / interaktion"
+        },
+        {
+          "text": "Gegeben das Tool wird ohne Parameter ausgeführt,",
+          "type": "checkbox",
+          "section": "8. akzeptanzkriterien (testbar)"
+        },
+        {
+          "text": "[ ] Gegeben das Tool wird ohne Parameter ausgeführt,",
+          "type": "bullet",
+          "section": "8. akzeptanzkriterien (testbar)"
+        },
+        {
+          "text": "Gegeben das Tool wird mit `--name=Alice` aufgeführt,",
+          "type": "checkbox",
+          "section": "8. akzeptanzkriterien (testbar)"
+        },
+        {
+          "text": "[ ] Gegeben das Tool wird mit `--name=Alice` aufgeführt,",
+          "type": "bullet",
+          "section": "8. akzeptanzkriterien (testbar)"
+        },
+        {
+          "text": "Gegeben das Tool wird mit `--help` aufgeführt,",
+          "type": "checkbox",
+          "section": "8. akzeptanzkriterien (testbar)"
+        },
+        {
+          "text": "[ ] Gegeben das Tool wird mit `--help` aufgeführt,",
+          "type": "bullet",
+          "section": "8. akzeptanzkriterien (testbar)"
+        },
+        {
+          "text": "Gegeben das Tool wird mit `--name=` aufgeführt (leerer Name),",
+          "type": "checkbox",
+          "section": "8. akzeptanzkriterien (testbar)"
+        },
+        {
+          "text": "[ ] Gegeben das Tool wird mit `--name=` aufgeführt (leerer Name),",
+          "type": "bullet",
+          "section": "8. akzeptanzkriterien (testbar)"
+        },
+        {
+          "text": "E2E (z.B. Node.js Child Process):",
+          "type": "bullet",
+          "section": "9. testideen"
+        },
+        {
+          "text": "Aufruf ohne Parameter → Ausgabe korrekt",
+          "type": "bullet",
+          "section": "9. testideen"
+        },
+        {
+          "text": "Aufruf mit `--name=Bob` → Ausgabe korrekt",
+          "type": "bullet",
+          "section": "9. testideen"
+        },
+        {
+          "text": "Aufruf mit `--help` → Hilfe angezeigt",
+          "type": "bullet",
+          "section": "9. testideen"
+        },
+        {
+          "text": "Unit/Integration:",
+          "type": "bullet",
+          "section": "9. testideen"
+        },
+        {
+          "text": "`formatGreeting(\"\")` → \"Hello, World!\"",
+          "type": "bullet",
+          "section": "9. testideen"
+        },
+        {
+          "text": "`formatGreeting(\"Alice\")` → \"Hello, Alice!\"",
+          "type": "bullet",
+          "section": "9. testideen"
+        },
+        {
+          "text": "`parseArgs([\"--name=Bob\"])` → `{name: \"Bob\"}`",
+          "type": "bullet",
+          "section": "9. testideen"
+        },
+        {
+          "text": "Manuelle Checks:",
+          "type": "bullet",
+          "section": "9. testideen"
+        },
+        {
+          "text": "Keine.",
+          "type": "bullet",
+          "section": "9. testideen"
+        },
+        {
+          "text": "Betroffene Dateien/Module:",
+          "type": "bullet",
+          "section": "10. auswirkungen auf bestehende komponenten"
+        },
+        {
+          "text": "Neu: `src/helloWorld.js`, `tests/unit/helloWorld.test.js`",
+          "type": "bullet",
+          "section": "10. auswirkungen auf bestehende komponenten"
+        },
+        {
+          "text": "Mögliche Seiteneffekte:",
+          "type": "bullet",
+          "section": "10. auswirkungen auf bestehende komponenten"
+        },
+        {
+          "text": "Keine (isoliertes Feature).",
+          "type": "bullet",
+          "section": "10. auswirkungen auf bestehende komponenten"
+        },
+        {
+          "text": "Migration/Datenanpassung nötig? (ja/nein, Details):",
+          "type": "bullet",
+          "section": "10. auswirkungen auf bestehende komponenten"
+        },
+        {
+          "text": "Nein.",
+          "type": "bullet",
+          "section": "10. auswirkungen auf bestehende komponenten"
+        },
+        {
+          "text": "Requirements validiert und abgenommen",
+          "type": "checkbox",
+          "section": "11. definition of done (dod)"
+        },
+        {
+          "text": "[ ] Requirements validiert und abgenommen",
+          "type": "bullet",
+          "section": "11. definition of done (dod)"
+        },
+        {
+          "text": "Functional Requirements Agent: Fachliche Anforderungen extrahiert und dokumentiert",
+          "type": "checkbox",
+          "section": "11. definition of done (dod)"
+        },
+        {
+          "text": "[ ] Functional Requirements Agent: Fachliche Anforderungen extrahiert und dokumentiert",
+          "type": "bullet",
+          "section": "11. definition of done (dod)"
+        },
+        {
+          "text": "Technical Requirements Agent: Technische Spezifikation (APIs, DTOs, Fehlerfälle, Tests-Mapping) erstellt",
+          "type": "checkbox",
+          "section": "11. definition of done (dod)"
+        },
+        {
+          "text": "[ ] Technical Requirements Agent: Technische Spezifikation (APIs, DTOs, Fehlerfälle, Tests-Mapping) erstellt",
+          "type": "bullet",
+          "section": "11. definition of done (dod)"
+        },
+        {
+          "text": "Architecture/Design Agent: Designdokumentation (PlantUML) geprüft/erstellt",
+          "type": "checkbox",
+          "section": "11. definition of done (dod)"
+        },
+        {
+          "text": "[ ] Architecture/Design Agent: Designdokumentation (PlantUML) geprüft/erstellt",
+          "type": "bullet",
+          "section": "11. definition of done (dod)"
+        },
+        {
+          "text": "Test Agent: Automatisierte Tests (Unit) definiert und in Repository abgelegt",
+          "type": "checkbox",
+          "section": "11. definition of done (dod)"
+        },
+        {
+          "text": "[ ] Test Agent: Automatisierte Tests (Unit) definiert und in Repository abgelegt",
+          "type": "bullet",
+          "section": "11. definition of done (dod)"
+        },
+        {
+          "text": "Implementation Agent: Code gegen Tests implementiert (Iterationen bis grün)",
+          "type": "checkbox",
+          "section": "11. definition of done (dod)"
+        },
+        {
+          "text": "[ ] Implementation Agent: Code gegen Tests implementiert (Iterationen bis grün)",
+          "type": "bullet",
+          "section": "11. definition of done (dod)"
+        },
+        {
+          "text": "Alle Test-Commands grün (npm run lint, npm test)",
+          "type": "checkbox",
+          "section": "11. definition of done (dod)"
+        },
+        {
+          "text": "[ ] Alle Test-Commands grün (npm run lint, npm test)",
+          "type": "bullet",
+          "section": "11. definition of done (dod)"
+        },
+        {
+          "text": "Review Agent: Code/Arch-Review durchgeführt und Feedback eingearbeitet",
+          "type": "checkbox",
+          "section": "11. definition of done (dod)"
+        },
+        {
+          "text": "[ ] Review Agent: Code/Arch-Review durchgeführt und Feedback eingearbeitet",
+          "type": "bullet",
+          "section": "11. definition of done (dod)"
+        },
+        {
+          "text": "Documentation Agent: Finale Dokumentation + Diagramme + Changelog erstellt",
+          "type": "checkbox",
+          "section": "11. definition of done (dod)"
+        },
+        {
+          "text": "[ ] Documentation Agent: Finale Dokumentation + Diagramme + Changelog erstellt",
+          "type": "bullet",
+          "section": "11. definition of done (dod)"
+        },
+        {
+          "text": "Metrics persistiert in knowledge/experiences.json",
+          "type": "checkbox",
+          "section": "11. definition of done (dod)"
+        },
+        {
+          "text": "[ ] Metrics persistiert in knowledge/experiences.json",
+          "type": "bullet",
+          "section": "11. definition of done (dod)"
+        },
+        {
+          "text": "Execution Report (Markdown + JSON) erstellt unter `forge-ai-work/<timestamp>/`",
+          "type": "checkbox",
+          "section": "11. definition of done (dod)"
+        },
+        {
+          "text": "[ ] Execution Report (Markdown + JSON) erstellt unter `forge-ai-work/<timestamp>/`",
+          "type": "bullet",
+          "section": "11. definition of done (dod)"
+        },
+        {
+          "text": "Keine.",
+          "type": "bullet",
+          "section": "12. offene fragen / blockers"
+        }
+      ]
+    }
+  },
+  "technical": {
+    "timestamp": "2025-12-12T21:24:00.429Z",
+    "generatedBy": "TechnicalRequirementsAgent",
+    "data": {
+      "projectName": "hello-world",
+      "version": "1.0",
+      "timestamp": "2025-12-12T21:24:00.429Z",
+      "sourceSection": "functional",
+      "apis": [
+        {
+          "id": "api_1",
+          "name": "Hintergrund_Erstes_extrem_einfaches_Test",
+          "description": "Hintergrund: Erstes, extrem einfaches Test-Feature für das Forge-AI-Framework.",
+          "source": "1. kontext / motivation",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_2",
+          "name": "Problem_heute_Kein_funktionierendes_Endt",
+          "description": "Problem heute: Kein funktionierendes End-to-End-Beispiel für die Software-Lifecycle-Pipeline.",
+          "source": "1. kontext / motivation",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_3",
+          "name": "Warum_jetzt_wichtig_Validierung_der_gesa",
+          "description": "Warum jetzt wichtig: Validierung der gesamten Orchestrator-, Agent- und Reporting-Pipeline.",
+          "source": "1. kontext / motivation",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_4",
+          "name": "In_Scope",
+          "description": "In Scope:",
+          "source": "3. scope",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_5",
+          "name": "Ein_Nodejs_CLITool_das_Hello_World_auf_d",
+          "description": "Ein Node.js CLI-Tool, das \"Hello, World!\" auf der Konsole ausgibt.",
+          "source": "3. scope",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_6",
+          "name": "Akzeptiert_optional_einen_Namen_als_Para",
+          "description": "Akzeptiert optional einen Namen als Parameter: `hello-world --name=Bob` → `Hello, Bob!`",
+          "source": "3. scope",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_7",
+          "name": "UnitTests_fr_die_Kernlogik",
+          "description": "Unit-Tests für die Kernlogik.",
+          "source": "3. scope",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_8",
+          "name": "Vollstndige_Dokumentation",
+          "description": "Vollständige Dokumentation.",
+          "source": "3. scope",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_9",
+          "name": "Out_of_Scope",
+          "description": "Out of Scope:",
+          "source": "3. scope",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_10",
+          "name": "Datenbankintegration",
+          "description": "Datenbankintegration.",
+          "source": "3. scope",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_11",
+          "name": "Externe_APICalls",
+          "description": "Externe API-Calls.",
+          "source": "3. scope",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_12",
+          "name": "Konfigurationsdateien",
+          "description": "Konfigurationsdateien.",
+          "source": "3. scope",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_13",
+          "name": "Das_Tool_gibt_bei_Aufruf_ohne_Parameter_",
+          "description": "Das Tool gibt bei Aufruf ohne Parameter \"Hello, World!\" aus.",
+          "source": "4. funktionale anforderungen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_14",
+          "name": "_Das_Tool_gibt_bei_Aufruf_ohne_Parameter",
+          "description": "[ ] Das Tool gibt bei Aufruf ohne Parameter \"Hello, World!\" aus.",
+          "source": "4. funktionale anforderungen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_15",
+          "name": "Das_Tool_akzeptiert_einen_optionalen_nam",
+          "description": "Das Tool akzeptiert einen optionalen `--name` Parameter.",
+          "source": "4. funktionale anforderungen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_16",
+          "name": "_Das_Tool_akzeptiert_einen_optionalen_na",
+          "description": "[ ] Das Tool akzeptiert einen optionalen `--name` Parameter.",
+          "source": "4. funktionale anforderungen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_17",
+          "name": "Bei_bergabe_von_nameXYZ_gibt_das_Tool_He",
+          "description": "Bei Übergabe von `--name=XYZ` gibt das Tool \"Hello, XYZ!\" aus.",
+          "source": "4. funktionale anforderungen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_18",
+          "name": "_Bei_bergabe_von_nameXYZ_gibt_das_Tool_H",
+          "description": "[ ] Bei Übergabe von `--name=XYZ` gibt das Tool \"Hello, XYZ!\" aus.",
+          "source": "4. funktionale anforderungen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_19",
+          "name": "Bei_bergabe_eines_leeren_Namens_name_wir",
+          "description": "Bei Übergabe eines leeren Namens (`--name=`) wird \"Hello, World!\" ausgegeben.",
+          "source": "4. funktionale anforderungen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_20",
+          "name": "_Bei_bergabe_eines_leeren_Namens_name_w",
+          "description": "[ ] Bei Übergabe eines leeren Namens (`--name=`) wird \"Hello, World!\" ausgegeben.",
+          "source": "4. funktionale anforderungen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_21",
+          "name": "Das_Tool_gibt_eine_Hilfemeldung_bei_help",
+          "description": "Das Tool gibt eine Hilfemeldung bei `--help` aus.",
+          "source": "4. funktionale anforderungen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_22",
+          "name": "_Das_Tool_gibt_eine_Hilfemeldung_bei_hel",
+          "description": "[ ] Das Tool gibt eine Hilfemeldung bei `--help` aus.",
+          "source": "4. funktionale anforderungen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_23",
+          "name": "Der_ExitCode_ist_0_bei_erfolgreichem_Dur",
+          "description": "Der Exit-Code ist 0 bei erfolgreichem Durchlauf.",
+          "source": "4. funktionale anforderungen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_24",
+          "name": "_Der_ExitCode_ist_0_bei_erfolgreichem_Du",
+          "description": "[ ] Der Exit-Code ist 0 bei erfolgreichem Durchlauf.",
+          "source": "4. funktionale anforderungen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_25",
+          "name": "CLI_Interface",
+          "description": "CLI Interface:",
+          "source": "5. schnittstellen / apis / datenstrukturen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_26",
+          "name": "Kommando_node_srchelloWorldjs_namestring",
+          "description": "Kommando: `node src/helloWorld.js [--name=<string>] [--help]`",
+          "source": "5. schnittstellen / apis / datenstrukturen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_27",
+          "name": "Funktion_formatGreetingname_string_strin",
+          "description": "Funktion: `formatGreeting(name?: string): string`",
+          "source": "5. schnittstellen / apis / datenstrukturen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_28",
+          "name": "Input_optionaler_Name_String",
+          "description": "Input: optionaler Name (String)",
+          "source": "5. schnittstellen / apis / datenstrukturen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_29",
+          "name": "Output_GreetingString",
+          "description": "Output: Greeting-String",
+          "source": "5. schnittstellen / apis / datenstrukturen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_30",
+          "name": "Datenmodelle",
+          "description": "Datenmodelle:",
+          "source": "5. schnittstellen / apis / datenstrukturen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_31",
+          "name": "InputArgument_Name_optional_String",
+          "description": "Input-Argument: Name (optional, String)",
+          "source": "5. schnittstellen / apis / datenstrukturen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_32",
+          "name": "Output_ConsoleString",
+          "description": "Output: Console-String",
+          "source": "5. schnittstellen / apis / datenstrukturen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_33",
+          "name": "Performance_Skalierung",
+          "description": "Performance / Skalierung:",
+          "source": "6. nicht-funktionale anforderungen / randbedingungen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_34",
+          "name": "Muss_innerhalb_von_100ms_ausgefhrt_werde",
+          "description": "Muss innerhalb von 100ms ausgeführt werden.",
+          "source": "6. nicht-funktionale anforderungen / randbedingungen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_35",
+          "name": "UX_Usability",
+          "description": "UX / Usability:",
+          "source": "6. nicht-funktionale anforderungen / randbedingungen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_36",
+          "name": "Klare_einfache_Ausgabe_Keine_komplexen_F",
+          "description": "Klare, einfache Ausgabe. Keine komplexen Fehlerausgaben nötig.",
+          "source": "6. nicht-funktionale anforderungen / randbedingungen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_37",
+          "name": "Technische_Einschrnkungen",
+          "description": "Technische Einschränkungen:",
+          "source": "6. nicht-funktionale anforderungen / randbedingungen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_38",
+          "name": "Nur_Nodejs_1800",
+          "description": "Nur Node.js (>=18.0.0).",
+          "source": "6. nicht-funktionale anforderungen / randbedingungen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_39",
+          "name": "Keine_externen_Dependencies",
+          "description": "Keine externen Dependencies.",
+          "source": "6. nicht-funktionale anforderungen / randbedingungen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_40",
+          "name": "Sonstiges",
+          "description": "Sonstiges:",
+          "source": "6. nicht-funktionale anforderungen / randbedingungen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_41",
+          "name": "Code_muss_vollstndig_von_Agenten_generie",
+          "description": "Code muss vollständig von Agenten generierbar sein (keine Hardcodes).",
+          "source": "6. nicht-funktionale anforderungen / randbedingungen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_42",
+          "name": "Relevante_ViewsKomponenten",
+          "description": "Relevante Views/Komponenten:",
+          "source": "7. ui / interaktion",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_43",
+          "name": "CLI_ConsoleOutput",
+          "description": "CLI / Console-Output.",
+          "source": "7. ui / interaktion",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_44",
+          "name": "Neueangepasste_Elemente",
+          "description": "Neue/angepasste Elemente:",
+          "source": "7. ui / interaktion",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_45",
+          "name": "Einfache_ConsoleAusgabe",
+          "description": "Einfache Console-Ausgabe.",
+          "source": "7. ui / interaktion",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_46",
+          "name": "Wichtiges_Verhalten",
+          "description": "Wichtiges Verhalten:",
+          "source": "7. ui / interaktion",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_47",
+          "name": "Synchroner_Ablauf_keine_AsyncOperationen",
+          "description": "Synchroner Ablauf, keine Async-Operationen für v1.",
+          "source": "7. ui / interaktion",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_48",
+          "name": "Gegeben_das_Tool_wird_ohne_Parameter_aus",
+          "description": "Gegeben das Tool wird ohne Parameter ausgeführt,",
+          "source": "8. akzeptanzkriterien (testbar)",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_49",
+          "name": "_Gegeben_das_Tool_wird_ohne_Parameter_au",
+          "description": "[ ] Gegeben das Tool wird ohne Parameter ausgeführt,",
+          "source": "8. akzeptanzkriterien (testbar)",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_50",
+          "name": "Gegeben_das_Tool_wird_mit_nameAlice_aufg",
+          "description": "Gegeben das Tool wird mit `--name=Alice` aufgeführt,",
+          "source": "8. akzeptanzkriterien (testbar)",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_51",
+          "name": "_Gegeben_das_Tool_wird_mit_nameAlice_auf",
+          "description": "[ ] Gegeben das Tool wird mit `--name=Alice` aufgeführt,",
+          "source": "8. akzeptanzkriterien (testbar)",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_52",
+          "name": "Gegeben_das_Tool_wird_mit_help_aufgefhrt",
+          "description": "Gegeben das Tool wird mit `--help` aufgeführt,",
+          "source": "8. akzeptanzkriterien (testbar)",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_53",
+          "name": "_Gegeben_das_Tool_wird_mit_help_aufgefhr",
+          "description": "[ ] Gegeben das Tool wird mit `--help` aufgeführt,",
+          "source": "8. akzeptanzkriterien (testbar)",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_54",
+          "name": "Gegeben_das_Tool_wird_mit_name_aufgefhrt",
+          "description": "Gegeben das Tool wird mit `--name=` aufgeführt (leerer Name),",
+          "source": "8. akzeptanzkriterien (testbar)",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_55",
+          "name": "_Gegeben_das_Tool_wird_mit_name_aufgefhr",
+          "description": "[ ] Gegeben das Tool wird mit `--name=` aufgeführt (leerer Name),",
+          "source": "8. akzeptanzkriterien (testbar)",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_56",
+          "name": "E2E_zB_Nodejs_Child_Process",
+          "description": "E2E (z.B. Node.js Child Process):",
+          "source": "9. testideen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_57",
+          "name": "Aufruf_ohne_Parameter_Ausgabe_korrekt",
+          "description": "Aufruf ohne Parameter → Ausgabe korrekt",
+          "source": "9. testideen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_58",
+          "name": "Aufruf_mit_nameBob_Ausgabe_korrekt",
+          "description": "Aufruf mit `--name=Bob` → Ausgabe korrekt",
+          "source": "9. testideen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_59",
+          "name": "Aufruf_mit_help_Hilfe_angezeigt",
+          "description": "Aufruf mit `--help` → Hilfe angezeigt",
+          "source": "9. testideen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_60",
+          "name": "UnitIntegration",
+          "description": "Unit/Integration:",
+          "source": "9. testideen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_61",
+          "name": "formatGreeting_Hello_World",
+          "description": "`formatGreeting(\"\")` → \"Hello, World!\"",
+          "source": "9. testideen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_62",
+          "name": "formatGreetingAlice_Hello_Alice",
+          "description": "`formatGreeting(\"Alice\")` → \"Hello, Alice!\"",
+          "source": "9. testideen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_63",
+          "name": "parseArgsnameBob_name_Bob",
+          "description": "`parseArgs([\"--name=Bob\"])` → `{name: \"Bob\"}`",
+          "source": "9. testideen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_64",
+          "name": "Manuelle_Checks",
+          "description": "Manuelle Checks:",
+          "source": "9. testideen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_65",
+          "name": "Keine",
+          "description": "Keine.",
+          "source": "9. testideen",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_66",
+          "name": "Betroffene_DateienModule",
+          "description": "Betroffene Dateien/Module:",
+          "source": "10. auswirkungen auf bestehende komponenten",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_67",
+          "name": "Neu_srchelloWorldjs_testsunithelloWorldt",
+          "description": "Neu: `src/helloWorld.js`, `tests/unit/helloWorld.test.js`",
+          "source": "10. auswirkungen auf bestehende komponenten",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_68",
+          "name": "Mgliche_Seiteneffekte",
+          "description": "Mögliche Seiteneffekte:",
+          "source": "10. auswirkungen auf bestehende komponenten",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_69",
+          "name": "Keine_isoliertes_Feature",
+          "description": "Keine (isoliertes Feature).",
+          "source": "10. auswirkungen auf bestehende komponenten",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_70",
+          "name": "MigrationDatenanpassung_ntig_janein_Deta",
+          "description": "Migration/Datenanpassung nötig? (ja/nein, Details):",
+          "source": "10. auswirkungen auf bestehende komponenten",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_71",
+          "name": "Nein",
+          "description": "Nein.",
+          "source": "10. auswirkungen auf bestehende komponenten",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_72",
+          "name": "Requirements_validiert_und_abgenommen",
+          "description": "Requirements validiert und abgenommen",
+          "source": "11. definition of done (dod)",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_73",
+          "name": "_Requirements_validiert_und_abgenommen",
+          "description": "[ ] Requirements validiert und abgenommen",
+          "source": "11. definition of done (dod)",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_74",
+          "name": "Functional_Requirements_Agent_Fachliche_",
+          "description": "Functional Requirements Agent: Fachliche Anforderungen extrahiert und dokumentiert",
+          "source": "11. definition of done (dod)",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_75",
+          "name": "_Functional_Requirements_Agent_Fachliche",
+          "description": "[ ] Functional Requirements Agent: Fachliche Anforderungen extrahiert und dokumentiert",
+          "source": "11. definition of done (dod)",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_76",
+          "name": "Technical_Requirements_Agent_Technische_",
+          "description": "Technical Requirements Agent: Technische Spezifikation (APIs, DTOs, Fehlerfälle, Tests-Mapping) erstellt",
+          "source": "11. definition of done (dod)",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_77",
+          "name": "_Technical_Requirements_Agent_Technische",
+          "description": "[ ] Technical Requirements Agent: Technische Spezifikation (APIs, DTOs, Fehlerfälle, Tests-Mapping) erstellt",
+          "source": "11. definition of done (dod)",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_78",
+          "name": "ArchitectureDesign_Agent_Designdokumenta",
+          "description": "Architecture/Design Agent: Designdokumentation (PlantUML) geprüft/erstellt",
+          "source": "11. definition of done (dod)",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_79",
+          "name": "_ArchitectureDesign_Agent_Designdokument",
+          "description": "[ ] Architecture/Design Agent: Designdokumentation (PlantUML) geprüft/erstellt",
+          "source": "11. definition of done (dod)",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_80",
+          "name": "Test_Agent_Automatisierte_Tests_Unit_def",
+          "description": "Test Agent: Automatisierte Tests (Unit) definiert und in Repository abgelegt",
+          "source": "11. definition of done (dod)",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_81",
+          "name": "_Test_Agent_Automatisierte_Tests_Unit_de",
+          "description": "[ ] Test Agent: Automatisierte Tests (Unit) definiert und in Repository abgelegt",
+          "source": "11. definition of done (dod)",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_82",
+          "name": "Implementation_Agent_Code_gegen_Tests_im",
+          "description": "Implementation Agent: Code gegen Tests implementiert (Iterationen bis grün)",
+          "source": "11. definition of done (dod)",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_83",
+          "name": "_Implementation_Agent_Code_gegen_Tests_i",
+          "description": "[ ] Implementation Agent: Code gegen Tests implementiert (Iterationen bis grün)",
+          "source": "11. definition of done (dod)",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_84",
+          "name": "Alle_TestCommands_grn_npm_run_lint_npm_t",
+          "description": "Alle Test-Commands grün (npm run lint, npm test)",
+          "source": "11. definition of done (dod)",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_85",
+          "name": "_Alle_TestCommands_grn_npm_run_lint_npm_",
+          "description": "[ ] Alle Test-Commands grün (npm run lint, npm test)",
+          "source": "11. definition of done (dod)",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_86",
+          "name": "Review_Agent_CodeArchReview_durchgefhrt_",
+          "description": "Review Agent: Code/Arch-Review durchgeführt und Feedback eingearbeitet",
+          "source": "11. definition of done (dod)",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_87",
+          "name": "_Review_Agent_CodeArchReview_durchgefhrt",
+          "description": "[ ] Review Agent: Code/Arch-Review durchgeführt und Feedback eingearbeitet",
+          "source": "11. definition of done (dod)",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_88",
+          "name": "Documentation_Agent_Finale_Dokumentation",
+          "description": "Documentation Agent: Finale Dokumentation + Diagramme + Changelog erstellt",
+          "source": "11. definition of done (dod)",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_89",
+          "name": "_Documentation_Agent_Finale_Dokumentatio",
+          "description": "[ ] Documentation Agent: Finale Dokumentation + Diagramme + Changelog erstellt",
+          "source": "11. definition of done (dod)",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_90",
+          "name": "Metrics_persistiert_in_knowledgeexperien",
+          "description": "Metrics persistiert in knowledge/experiences.json",
+          "source": "11. definition of done (dod)",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_91",
+          "name": "_Metrics_persistiert_in_knowledgeexperie",
+          "description": "[ ] Metrics persistiert in knowledge/experiences.json",
+          "source": "11. definition of done (dod)",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_92",
+          "name": "Execution_Report_Markdown_JSON_erstellt_",
+          "description": "Execution Report (Markdown + JSON) erstellt unter `forge-ai-work/<timestamp>/`",
+          "source": "11. definition of done (dod)",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_93",
+          "name": "_Execution_Report_Markdown_JSON_erstellt",
+          "description": "[ ] Execution Report (Markdown + JSON) erstellt unter `forge-ai-work/<timestamp>/`",
+          "source": "11. definition of done (dod)",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        },
+        {
+          "id": "api_94",
+          "name": "Keine",
+          "description": "Keine.",
+          "source": "12. offene fragen / blockers",
+          "signature": {
+            "parameters": [
+              {
+                "name": "input",
+                "type": "object",
+                "description": "Input parameters",
+                "required": true
+              }
+            ],
+            "returns": {
+              "type": "Promise<object>",
+              "description": "Result object"
+            }
+          },
+          "errorCases": [
+            "InvalidInputError",
+            "ProcessingError"
+          ]
+        }
+      ],
+      "dataStructures": [
+        {
+          "name": "Input",
+          "type": "object",
+          "description": "Generic input data structure",
+          "fields": {
+            "data": {
+              "type": "any",
+              "required": false
+            }
+          }
+        },
+        {
+          "name": "Output",
+          "type": "object",
+          "description": "Generic output data structure",
+          "fields": {
+            "success": {
+              "type": "boolean",
+              "required": true
+            },
+            "data": {
+              "type": "any",
+              "required": false
+            },
+            "error": {
+              "type": "string",
+              "required": false
+            }
+          }
+        }
+      ],
+      "errorHandling": {
+        "errorTypes": [
+          {
+            "name": "InvalidInputError",
+            "httpCode": 400,
+            "description": "Invalid or missing required input"
+          },
+          {
+            "name": "ProcessingError",
+            "httpCode": 500,
+            "description": "Error during processing"
+          },
+          {
+            "name": "NotFoundError",
+            "httpCode": 404,
+            "description": "Resource not found"
+          }
+        ],
+        "validationRules": [
+          "Validate input types",
+          "Check required fields",
+          "Sanitize input data"
+        ]
+      },
+      "constraints": {
+        "language": "javascript",
+        "runtime": "node.js",
+        "minVersion": "18.0.0"
+      }
+    }
+  },
+  "architecture": null,
+  "testing": null,
+  "implementation": null,
+  "review": null,
+  "documentation": null,
+  "deployment": null,
+  "agents": [],
+  "executionLog": []
+}

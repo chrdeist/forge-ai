@@ -1,0 +1,337 @@
+{
+  "name": "hello-world",
+  "version": "1.0",
+  "timestamp": "2025-12-12T21:02:13.845Z",
+  "modules": [],
+  "apis": [
+    {
+      "id": "api_1",
+      "name": "dasToolGibtBeiAufrufOhneParameterHelloWorldAus",
+      "description": "Das Tool gibt bei Aufruf ohne Parameter \"Hello, World!\" aus.",
+      "signature": {
+        "parameters": [
+          {
+            "name": "input",
+            "type": "object",
+            "description": "Input parameters",
+            "required": true
+          }
+        ],
+        "returns": {
+          "type": "Promise<object>",
+          "description": "Result object"
+        }
+      },
+      "errorCases": [
+        "InvalidInputError",
+        "ProcessingError"
+      ]
+    },
+    {
+      "id": "api_2",
+      "name": "dasToolAkzeptiertEinenOptionalenNameParameter",
+      "description": "Das Tool akzeptiert einen optionalen `--name` Parameter.",
+      "signature": {
+        "parameters": [
+          {
+            "name": "input",
+            "type": "object",
+            "description": "Input parameters",
+            "required": true
+          }
+        ],
+        "returns": {
+          "type": "Promise<object>",
+          "description": "Result object"
+        }
+      },
+      "errorCases": [
+        "InvalidInputError",
+        "ProcessingError"
+      ]
+    },
+    {
+      "id": "api_3",
+      "name": "beiBergabeVonNamexyzGibtDasToolHelloXyzAus",
+      "description": "Bei Übergabe von `--name=XYZ` gibt das Tool \"Hello, XYZ!\" aus.",
+      "signature": {
+        "parameters": [
+          {
+            "name": "input",
+            "type": "object",
+            "description": "Input parameters",
+            "required": true
+          }
+        ],
+        "returns": {
+          "type": "Promise<object>",
+          "description": "Result object"
+        }
+      },
+      "errorCases": [
+        "InvalidInputError",
+        "ProcessingError"
+      ]
+    },
+    {
+      "id": "api_4",
+      "name": "beiBergabeEinesLeerenNamensNameWirdHelloWorldAusgegeben",
+      "description": "Bei Übergabe eines leeren Namens (`--name=`) wird \"Hello, World!\" ausgegeben.",
+      "signature": {
+        "parameters": [
+          {
+            "name": "input",
+            "type": "object",
+            "description": "Input parameters",
+            "required": true
+          }
+        ],
+        "returns": {
+          "type": "Promise<object>",
+          "description": "Result object"
+        }
+      },
+      "errorCases": [
+        "InvalidInputError",
+        "ProcessingError"
+      ]
+    },
+    {
+      "id": "api_5",
+      "name": "dasToolGibtEineHilfemeldungBeiHelpAus",
+      "description": "Das Tool gibt eine Hilfemeldung bei `--help` aus.",
+      "signature": {
+        "parameters": [
+          {
+            "name": "input",
+            "type": "object",
+            "description": "Input parameters",
+            "required": true
+          }
+        ],
+        "returns": {
+          "type": "Promise<object>",
+          "description": "Result object"
+        }
+      },
+      "errorCases": [
+        "InvalidInputError",
+        "ProcessingError"
+      ]
+    },
+    {
+      "id": "api_6",
+      "name": "derExitcodeIst0BeiErfolgreichemDurchlauf",
+      "description": "Der Exit-Code ist 0 bei erfolgreichem Durchlauf.",
+      "signature": {
+        "parameters": [
+          {
+            "name": "input",
+            "type": "object",
+            "description": "Input parameters",
+            "required": true
+          }
+        ],
+        "returns": {
+          "type": "Promise<object>",
+          "description": "Result object"
+        }
+      },
+      "errorCases": [
+        "InvalidInputError",
+        "ProcessingError"
+      ]
+    }
+  ],
+  "dataStructures": [
+    {
+      "name": "RequestPayload",
+      "description": "Standard request input",
+      "fields": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": false,
+          "description": "Request ID"
+        },
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "Request data"
+        },
+        {
+          "name": "metadata",
+          "type": "object",
+          "required": false,
+          "description": "Metadata"
+        }
+      ]
+    },
+    {
+      "name": "ResponsePayload",
+      "description": "Standard response output",
+      "fields": [
+        {
+          "name": "success",
+          "type": "boolean",
+          "required": true,
+          "description": "Success flag"
+        },
+        {
+          "name": "data",
+          "type": "object",
+          "required": false,
+          "description": "Response data"
+        },
+        {
+          "name": "errors",
+          "type": "string[]",
+          "required": false,
+          "description": "Error messages"
+        }
+      ]
+    }
+  ],
+  "constraints": [
+    {
+      "name": "InputValidation",
+      "description": "All inputs must be validated before processing"
+    }
+  ],
+  "errorCases": [
+    {
+      "name": "InvalidInputError",
+      "description": "Input validation failed",
+      "statusCode": 400
+    },
+    {
+      "name": "ProcessingError",
+      "description": "Internal processing error",
+      "statusCode": 500
+    },
+    {
+      "name": "NotFoundError",
+      "description": "Resource not found",
+      "statusCode": 404
+    }
+  ],
+  "requirementMapping": [
+    {
+      "requirementId": "FR_1",
+      "requirement": "Das Tool gibt bei Aufruf ohne Parameter \"Hello, World!\" aus.",
+      "technicalFunction": "dasToolGibtBeiAufrufOhneParameterHelloWorldAus",
+      "acceptanceCriteria": [],
+      "suggestedTests": [
+        {
+          "type": "unit",
+          "description": "Unit test for dasToolGibtBeiAufrufOhneParameterHelloWorldAus",
+          "testFile": "tests/unit/dasToolGibtBeiAufrufOhneParameterHelloWorldAus.test.js"
+        },
+        {
+          "type": "e2e",
+          "description": "E2E test for Das Tool gibt bei Aufruf ohne Parameter \"Hello, World!\" aus.",
+          "testFile": "tests/e2e/dasToolGibtBeiAufrufOhneParameterHelloWorldAus.spec.js"
+        }
+      ]
+    },
+    {
+      "requirementId": "FR_2",
+      "requirement": "Das Tool akzeptiert einen optionalen `--name` Parameter.",
+      "technicalFunction": "dasToolAkzeptiertEinenOptionalenNameParameter",
+      "acceptanceCriteria": [],
+      "suggestedTests": [
+        {
+          "type": "unit",
+          "description": "Unit test for dasToolAkzeptiertEinenOptionalenNameParameter",
+          "testFile": "tests/unit/dasToolAkzeptiertEinenOptionalenNameParameter.test.js"
+        },
+        {
+          "type": "e2e",
+          "description": "E2E test for Das Tool akzeptiert einen optionalen `--name` Parameter.",
+          "testFile": "tests/e2e/dasToolAkzeptiertEinenOptionalenNameParameter.spec.js"
+        }
+      ]
+    },
+    {
+      "requirementId": "FR_3",
+      "requirement": "Bei Übergabe von `--name=XYZ` gibt das Tool \"Hello, XYZ!\" aus.",
+      "technicalFunction": "beiBergabeVonNamexyzGibtDasToolHelloXyzAus",
+      "acceptanceCriteria": [],
+      "suggestedTests": [
+        {
+          "type": "unit",
+          "description": "Unit test for beiBergabeVonNamexyzGibtDasToolHelloXyzAus",
+          "testFile": "tests/unit/beiBergabeVonNamexyzGibtDasToolHelloXyzAus.test.js"
+        },
+        {
+          "type": "e2e",
+          "description": "E2E test for Bei Übergabe von `--name=XYZ` gibt das Tool \"Hello, XYZ!\" aus.",
+          "testFile": "tests/e2e/beiBergabeVonNamexyzGibtDasToolHelloXyzAus.spec.js"
+        }
+      ]
+    },
+    {
+      "requirementId": "FR_4",
+      "requirement": "Bei Übergabe eines leeren Namens (`--name=`) wird \"Hello, World!\" ausgegeben.",
+      "technicalFunction": "beiBergabeEinesLeerenNamensNameWirdHelloWorldAusgegeben",
+      "acceptanceCriteria": [],
+      "suggestedTests": [
+        {
+          "type": "unit",
+          "description": "Unit test for beiBergabeEinesLeerenNamensNameWirdHelloWorldAusgegeben",
+          "testFile": "tests/unit/beiBergabeEinesLeerenNamensNameWirdHelloWorldAusgegeben.test.js"
+        },
+        {
+          "type": "e2e",
+          "description": "E2E test for Bei Übergabe eines leeren Namens (`--name=`) wird \"Hello, World!\" ausgegeben.",
+          "testFile": "tests/e2e/beiBergabeEinesLeerenNamensNameWirdHelloWorldAusgegeben.spec.js"
+        }
+      ]
+    },
+    {
+      "requirementId": "FR_5",
+      "requirement": "Das Tool gibt eine Hilfemeldung bei `--help` aus.",
+      "technicalFunction": "dasToolGibtEineHilfemeldungBeiHelpAus",
+      "acceptanceCriteria": [],
+      "suggestedTests": [
+        {
+          "type": "unit",
+          "description": "Unit test for dasToolGibtEineHilfemeldungBeiHelpAus",
+          "testFile": "tests/unit/dasToolGibtEineHilfemeldungBeiHelpAus.test.js"
+        },
+        {
+          "type": "e2e",
+          "description": "E2E test for Das Tool gibt eine Hilfemeldung bei `--help` aus.",
+          "testFile": "tests/e2e/dasToolGibtEineHilfemeldungBeiHelpAus.spec.js"
+        }
+      ]
+    },
+    {
+      "requirementId": "FR_6",
+      "requirement": "Der Exit-Code ist 0 bei erfolgreichem Durchlauf.",
+      "technicalFunction": "derExitcodeIst0BeiErfolgreichemDurchlauf",
+      "acceptanceCriteria": [],
+      "suggestedTests": [
+        {
+          "type": "unit",
+          "description": "Unit test for derExitcodeIst0BeiErfolgreichemDurchlauf",
+          "testFile": "tests/unit/derExitcodeIst0BeiErfolgreichemDurchlauf.test.js"
+        },
+        {
+          "type": "e2e",
+          "description": "E2E test for Der Exit-Code ist 0 bei erfolgreichem Durchlauf.",
+          "testFile": "tests/e2e/derExitcodeIst0BeiErfolgreichemDurchlauf.spec.js"
+        }
+      ]
+    }
+  ],
+  "implementationHints": [
+    "Follow the API signatures and data structures exactly",
+    "Implement input validation for all APIs",
+    "Handle all documented error cases",
+    "Write tests for each API function",
+    "Do not hardcode values; use configuration",
+    "Ensure code is generic and reusable"
+  ]
+}

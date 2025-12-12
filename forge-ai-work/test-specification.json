@@ -1,0 +1,127 @@
+{
+  "name": "hello-world",
+  "version": "1.0",
+  "timestamp": "2025-12-12T21:02:13.877Z",
+  "unitTests": [
+    {
+      "testId": "unit_api_1",
+      "testName": "dasToolGibtBeiAufrufOhneParameterHelloWorldAus - Happy Path",
+      "target": "dasToolGibtBeiAufrufOhneParameterHelloWorldAus",
+      "assertions": [
+        "Should accept valid input",
+        "Should return success response",
+        "Should have correct data structure"
+      ],
+      "errorScenarios": [
+        {
+          "scenario": "dasToolGibtBeiAufrufOhneParameterHelloWorldAus with invalid input",
+          "assertions": [
+            "Should reject invalid input",
+            "Should return error"
+          ]
+        }
+      ]
+    },
+    {
+      "testId": "unit_api_2",
+      "testName": "dasToolAkzeptiertEinenOptionalenNameParameter - Happy Path",
+      "target": "dasToolAkzeptiertEinenOptionalenNameParameter",
+      "assertions": [
+        "Should accept valid input",
+        "Should return success response",
+        "Should have correct data structure"
+      ],
+      "errorScenarios": [
+        {
+          "scenario": "dasToolAkzeptiertEinenOptionalenNameParameter with invalid input",
+          "assertions": [
+            "Should reject invalid input",
+            "Should return error"
+          ]
+        }
+      ]
+    },
+    {
+      "testId": "unit_api_3",
+      "testName": "beiBergabeVonNamexyzGibtDasToolHelloXyzAus - Happy Path",
+      "target": "beiBergabeVonNamexyzGibtDasToolHelloXyzAus",
+      "assertions": [
+        "Should accept valid input",
+        "Should return success response",
+        "Should have correct data structure"
+      ],
+      "errorScenarios": [
+        {
+          "scenario": "beiBergabeVonNamexyzGibtDasToolHelloXyzAus with invalid input",
+          "assertions": [
+            "Should reject invalid input",
+            "Should return error"
+          ]
+        }
+      ]
+    },
+    {
+      "testId": "unit_api_4",
+      "testName": "beiBergabeEinesLeerenNamensNameWirdHelloWorldAusgegeben - Happy Path",
+      "target": "beiBergabeEinesLeerenNamensNameWirdHelloWorldAusgegeben",
+      "assertions": [
+        "Should accept valid input",
+        "Should return success response",
+        "Should have correct data structure"
+      ],
+      "errorScenarios": [
+        {
+          "scenario": "beiBergabeEinesLeerenNamensNameWirdHelloWorldAusgegeben with invalid input",
+          "assertions": [
+            "Should reject invalid input",
+            "Should return error"
+          ]
+        }
+      ]
+    },
+    {
+      "testId": "unit_api_5",
+      "testName": "dasToolGibtEineHilfemeldungBeiHelpAus - Happy Path",
+      "target": "dasToolGibtEineHilfemeldungBeiHelpAus",
+      "assertions": [
+        "Should accept valid input",
+        "Should return success response",
+        "Should have correct data structure"
+      ],
+      "errorScenarios": [
+        {
+          "scenario": "dasToolGibtEineHilfemeldungBeiHelpAus with invalid input",
+          "assertions": [
+            "Should reject invalid input",
+            "Should return error"
+          ]
+        }
+      ]
+    },
+    {
+      "testId": "unit_api_6",
+      "testName": "derExitcodeIst0BeiErfolgreichemDurchlauf - Happy Path",
+      "target": "derExitcodeIst0BeiErfolgreichemDurchlauf",
+      "assertions": [
+        "Should accept valid input",
+        "Should return success response",
+        "Should have correct data structure"
+      ],
+      "errorScenarios": [
+        {
+          "scenario": "derExitcodeIst0BeiErfolgreichemDurchlauf with invalid input",
+          "assertions": [
+            "Should reject invalid input",
+            "Should return error"
+          ]
+        }
+      ]
+    }
+  ],
+  "e2eTests": [],
+  "testCommandsToRun": [
+    "npm run lint",
+    "npm run test",
+    "npm run test -- --coverage"
+  ]
+}

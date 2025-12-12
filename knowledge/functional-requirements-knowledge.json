@@ -1,0 +1,36 @@
+{
+  "version": "1.0",
+  "agentName": "FunctionalRequirementsAgent",
+  "createdAt": "2025-12-12T21:02:13.781Z",
+  "patterns": [
+    {
+      "id": "pattern_1765573333803",
+      "timestamp": "2025-12-12T21:02:13.803Z",
+      "requirementName": "hello-world-requirements",
+      "name": "clear-user-story",
+      "category": "requirement-clarity",
+      "description": "Well-defined user story helps downstream processing",
+      "example": "Als Entwickler möchte ich ein CLI-Tool haben, das eine \"Hello World\"-Nachricht ausgibt,\nDAMIT ich da",
+      "successRate": 0.9
+    },
+    {
+      "id": "pattern_1765574634799",
+      "timestamp": "2025-12-12T21:23:54.799Z",
+      "requirementName": "hello-world",
+      "name": "functional-requirements-extraction",
+      "category": "generic-pattern",
+      "description": "Successfully extracted 94 functional requirements",
+      "successRate": 0.9
+    },
+    {
+      "id": "pattern_1765574640409",
+      "timestamp": "2025-12-12T21:24:00.409Z",
+      "requirementName": "hello-world",
+      "name": "functional-requirements-extraction",
+      "category": "generic-pattern",
+      "description": "Successfully extracted 94 functional requirements",
+      "successRate": 0.9
+    }
+  ],
+  "strategies": []
+}
