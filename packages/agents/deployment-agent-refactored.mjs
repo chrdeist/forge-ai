@@ -26,8 +26,9 @@ export class DeploymentAgent extends BaseAgent {
   /**
    * Main execute method
    * @param {string} rvdFilePath - Path to RVD file (with all sections)
+   * @param {object} options - { featureName, projectRoot, generatedCodeDir }
    */
-  async execute(rvdFilePath) {
+  async execute(rvdFilePath, options = {}) {
     if (!fs.existsSync(rvdFilePath)) {
       throw new Error(`RVD file not found: ${rvdFilePath}`);
     }
@@ -63,6 +64,16 @@ export class DeploymentAgent extends BaseAgent {
     // Save RVD file
     await this.rvdManager.save(rvdFilePath, rvd);
     this._log(`✓ Wrote deployment section to RVD`);
+
+    // Write feature-specific deployment files if featureName is provided
+    if (options.featureName && options.projectRoot) {
+      await this._writeFeatureDeploymentFiles(
+        deploymentData,
+        options.featureName,
+        options.projectRoot,
+        options.generatedCodeDir
+      );
+    }
 
     // Learn patterns
     this._learnFromExecution(deploymentData);
@@ -538,6 +549,316 @@ echo "✓ Rollback complete!"
       description: `Generated deployment configs for targets: ${targets}`,
       successRate: 0.8,
     });
+  }
+
+  /**
+   * Write feature-specific deployment files
+   * Creates deployment artifacts in projects/PROJECT_NAME/deployment/FEATURE_NAME/
+   */
+  async _writeFeatureDeploymentFiles(deploymentData, featureName, projectRoot, generatedCodeDir) {
+    const deploymentDir = path.join(projectRoot, 'deployment', featureName);
+    
+    // Create deployment directory
+    if (!fs.existsSync(deploymentDir)) {
+      fs.mkdirSync(deploymentDir, { recursive: true });
+    }
+
+    this._log(`✓ Writing deployment files to ${deploymentDir}`);
+
+    // Extract actual project name from projectRoot (e.g., "projects/hello-world" -> "hello-world")
+    const actualProjectName = path.basename(projectRoot);
+
+    // Detect if generated code uses ESM or CommonJS
+    const useESM = this._detectESMUsage(generatedCodeDir);
+    
+    // Write Dockerfile
+    const dockerfile = this._generateOptimizedDockerfile(deploymentData, useESM);
+    fs.writeFileSync(path.join(deploymentDir, 'Dockerfile'), dockerfile);
+    this._log(`  ✓ Wrote Dockerfile`);
+
+    // Write docker-compose.yml (simplified - no DB if not needed)
+    const dockerCompose = this._generateSimplifiedDockerCompose(featureName, actualProjectName);
+    fs.writeFileSync(path.join(deploymentDir, 'docker-compose.yml'), dockerCompose);
+    this._log(`  ✓ Wrote docker-compose.yml`);
+
+    // Write build script - use actual project name, not deploymentData.projectName
+    const buildScript = this._generateBuildScript(featureName, actualProjectName);
+    const buildScriptPath = path.join(deploymentDir, 'build.sh');
+    fs.writeFileSync(buildScriptPath, buildScript);
+    fs.chmodSync(buildScriptPath, '755');
+    this._log(`  ✓ Wrote build.sh`);
+
+    // Write README - use actual project name
+    const readme = this._generateDeploymentReadme(featureName, actualProjectName);
+    fs.writeFileSync(path.join(deploymentDir, 'README.md'), readme);
+    this._log(`  ✓ Wrote README.md`);
+
+    this._log(`✅ Feature-specific deployment files written to ${deploymentDir}`);
+  }
+
+  /**
+   * Detect if generated code uses ESM (import/export) or CommonJS (require/module.exports)
+   */
+  _detectESMUsage(generatedCodeDir) {
+    if (!generatedCodeDir || !fs.existsSync(generatedCodeDir)) {
+      return true; // Default to ESM
+    }
+
+    const packageJsonPath = path.join(generatedCodeDir, 'package.json');
+    if (fs.existsSync(packageJsonPath)) {
+      const pkg = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
+      if (pkg.type === 'module') {
+        return true;
+      }
+    }
+
+    // Check main entry point for import statements
+    const possibleEntryPoints = [
+      path.join(generatedCodeDir, 'src/index.js'),
+      path.join(generatedCodeDir, 'src/app.js'),
+      path.join(generatedCodeDir, 'index.js'),
+    ];
+
+    for (const entryPoint of possibleEntryPoints) {
+      if (fs.existsSync(entryPoint)) {
+        const content = fs.readFileSync(entryPoint, 'utf-8');
+        if (content.includes('import ') || content.includes('export ')) {
+          return true;
+        }
+        if (content.includes('require(') || content.includes('module.exports')) {
+          return false;
+        }
+      }
+    }
+
+    return true; // Default to ESM
+  }
+
+  /**
+   * Generate optimized Dockerfile with ESM support
+   */
+  _generateOptimizedDockerfile(deploymentData, useESM) {
+    const healthCheckCmd = useESM 
+      ? 'wget --no-verbose --tries=1 --spider http://localhost:3000/health || exit 1'
+      : 'node -e "require(\'http\').get(\'http://localhost:3000/health\', (r) => {if (r.statusCode !== 200) throw new Error(r.statusCode)})"';
+
+    return `# Generated Dockerfile
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Copy package files
+COPY package.json package-lock.json ./
+
+# Install dependencies
+RUN npm ci --only=production
+
+# Copy application code
+COPY src ./src
+
+# Expose port
+EXPOSE 3000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=40s --retries=3 \\
+  CMD ${healthCheckCmd}
+
+# Start application
+CMD ["npm", "start"]
+`;
+  }
+
+  /**
+   * Generate simplified docker-compose.yml (no unnecessary services)
+   */
+  _generateSimplifiedDockerCompose(featureName, projectName) {
+    return `services:
+  api:
+    build:
+      context: ../../../../generated-code/${projectName}-${featureName}
+      dockerfile: ../../projects/${projectName}/deployment/${featureName}/Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+    restart: unless-stopped
+`;
+  }
+
+  /**
+   * Generate build.sh script
+   */
+  _generateBuildScript(featureName, projectName) {
+    const imageName = `${projectName}-${featureName}`;
+    return `#!/bin/bash
+# ${featureName} Build and Deploy Script
+# 
+# Usage:
+#   ./build.sh build   - Build Docker image
+#   ./build.sh test    - Build and run tests
+#   ./build.sh run     - Build and run container
+#   ./build.sh deploy  - Deploy with docker-compose
+
+set -e
+
+FEATURE_NAME="${featureName}"
+PROJECT_NAME="${projectName}"
+IMAGE_NAME="${imageName}"
+# Determine correct path to generated code relative to deployment folder
+# If in projects/PROJECT/deployment/FEATURE, go up 3 levels to workspace root
+GENERATED_CODE_DIR="../../../../generated-code/\${PROJECT_NAME}-\${FEATURE_NAME}"
+
+# Colors
+GREEN='\\033[0;32m'
+BLUE='\\033[0;34m'
+RED='\\033[0;31m'
+NC='\\033[0m' # No Color
+
+echo -e "\${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\${NC}"
+echo -e "\${BLUE}  \${FEATURE_NAME} Deployment Script\${NC}"
+echo -e "\${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\${NC}"
+
+# Change to generated code directory for build context
+cd "$(dirname "$0")"
+DEPLOY_DIR="$(pwd)"
+cd "\${GENERATED_CODE_DIR}"
+
+case "$1" in
+  build)
+    echo -e "\${GREEN}[1/2] Building Docker image: \${IMAGE_NAME}\${NC}"
+    docker build -f "\${DEPLOY_DIR}/Dockerfile" -t "\${IMAGE_NAME}:latest" .
+    echo -e "\${GREEN}✓ Image built successfully\${NC}"
+    echo ""
+    echo -e "\${BLUE}Image: \${IMAGE_NAME}:latest\${NC}"
+    docker images | grep "\${IMAGE_NAME}"
+    ;;
+
+  test)
+    echo -e "\${GREEN}[1/3] Building Docker image\${NC}"
+    docker build -f "\${DEPLOY_DIR}/Dockerfile" -t "\${IMAGE_NAME}:latest" .
+    
+    echo -e "\${GREEN}[2/3] Running tests in container\${NC}"
+    docker run --rm "\${IMAGE_NAME}:latest" npm test
+    
+    echo -e "\${GREEN}[3/3] Testing health endpoint\${NC}"
+    CONTAINER_ID=$(docker run -d -p 3001:3000 "\${IMAGE_NAME}:latest")
+    sleep 3
+    curl -f http://localhost:3001/health || (docker logs "$CONTAINER_ID" && docker stop "$CONTAINER_ID" && exit 1)
+    docker stop "$CONTAINER_ID"
+    
+    echo -e "\${GREEN}✓ All tests passed\${NC}"
+    ;;
+
+  run)
+    echo -e "\${GREEN}[1/2] Building Docker image\${NC}"
+    docker build -f "\${DEPLOY_DIR}/Dockerfile" -t "\${IMAGE_NAME}:latest" .
+    
+    echo -e "\${GREEN}[2/2] Starting container\${NC}"
+    docker run --rm -p 3000:3000 --name "\${IMAGE_NAME}" "\${IMAGE_NAME}:latest"
+    ;;
+
+  deploy)
+    echo -e "\${GREEN}[1/2] Building image\${NC}"
+    docker build -f "\${DEPLOY_DIR}/Dockerfile" -t "\${IMAGE_NAME}:latest" .
+    
+    echo -e "\${GREEN}[2/2] Starting with docker-compose\${NC}"
+    cd "\${DEPLOY_DIR}"
+    docker-compose up -d
+    
+    echo -e "\${GREEN}✓ Deployed successfully\${NC}"
+    echo ""
+    echo -e "\${BLUE}Check status: docker-compose ps\${NC}"
+    echo -e "\${BLUE}View logs:    docker-compose logs -f\${NC}"
+    echo -e "\${BLUE}Stop:         docker-compose down\${NC}"
+    ;;
+
+  stop)
+    echo -e "\${GREEN}Stopping deployment\${NC}"
+    cd "\${DEPLOY_DIR}"
+    docker-compose down
+    echo -e "\${GREEN}✓ Stopped\${NC}"
+    ;;
+
+  *)
+    echo "Usage: $0 {build|test|run|deploy|stop}"
+    echo ""
+    echo "Commands:"
+    echo "  build   - Build Docker image only"
+    echo "  test    - Build and run all tests (npm test + health check)"
+    echo "  run     - Build and run container interactively"
+    echo "  deploy  - Deploy with docker-compose (detached mode)"
+    echo "  stop    - Stop docker-compose deployment"
+    exit 1
+    ;;
+esac
+`;
+  }
+
+  /**
+   * Generate deployment README
+   */
+  _generateDeploymentReadme(featureName, projectName) {
+    return `# ${featureName} Deployment
+
+Deployment-Artefakte für ${projectName} ${featureName}.
+
+## Inhalt
+
+- \`Dockerfile\` - Multi-stage Docker Build
+- \`docker-compose.yml\` - Service Orchestrierung
+- \`build.sh\` - Build und Deploy Script
+
+## Quick Start
+
+\`\`\`bash
+# Build Docker Image
+./build.sh build
+
+# Run Tests
+./build.sh test
+
+# Deploy mit Docker Compose
+./build.sh deploy
+
+# Stop Deployment
+./build.sh stop
+\`\`\`
+
+## Docker Build
+
+\`\`\`bash
+docker build -t ${projectName}-${featureName} -f Dockerfile ../../../generated-code/${projectName}-${featureName}
+\`\`\`
+
+## Docker Compose
+
+\`\`\`bash
+docker-compose up -d
+docker-compose ps
+docker-compose logs -f
+docker-compose down
+\`\`\`
+
+## Manueller Test
+
+\`\`\`bash
+# Health Check
+curl http://localhost:3000/health
+\`\`\`
+
+## Deployment Targets
+
+- **Local Development**: \`./build.sh run\`
+- **Integration Testing**: \`./build.sh test\`
+- **Production**: \`./build.sh deploy\` (docker-compose)
+
+## Artefakte-Quelle
+
+Generierter Code: \`/workspaces/forge-ai/generated-code/${projectName}-${featureName}/\`
+
+Deployment-Konfiguration ist Teil des ${featureName} Ordners, damit alle Feature-Artefakte an einer Stelle liegen.
+`;
   }
 }
 

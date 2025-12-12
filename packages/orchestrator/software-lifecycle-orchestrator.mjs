@@ -37,6 +37,10 @@ export class SoftwareLifecycleOrchestrator {
       documentation: new DocumentationAgent(config),
       deployment: new DeploymentAgent(config),
     };
+    // Store feature name and project root for deployment
+    this.featureName = config.featureName || null;
+    this.projectRoot = config.projectRoot || process.cwd();
+    this.generatedCodeDir = config.generatedCodeDir || null;
   }
 
   log(msg) {
@@ -114,7 +118,11 @@ export class SoftwareLifecycleOrchestrator {
       },
       {
         key: 'deployment',
-        run: async () => this.agents.deployment.execute(rvdFile),
+        run: async () => this.agents.deployment.execute(rvdFile, {
+          featureName: this.featureName,
+          projectRoot: this.projectRoot,
+          generatedCodeDir: this.generatedCodeDir,
+        }),
       },
     ];
 
@@ -414,10 +422,21 @@ if (process.argv[1] && process.argv[1].endsWith('software-lifecycle-orchestrator
   const continueOnError = !!args['continue-on-error'];
   const cleanArtifacts = !!args['clean-artifacts'];
   const resetSections = args['reset-sections'] || null;
+  const featureName = args['feature-name'] || null;
+  const projectRoot = args['project-root'] || process.cwd();
+  const generatedCodeDir = args['generated-code-dir'] || null;
 
   const report = args['report'] !== 'false';
   const reportDir = args['report-dir'] || 'test-results';
-  const orchestrator = new SoftwareLifecycleOrchestrator({ cleanArtifacts, resetSections, report, reportDir });
+  const orchestrator = new SoftwareLifecycleOrchestrator({ 
+    cleanArtifacts, 
+    resetSections, 
+    report, 
+    reportDir,
+    featureName,
+    projectRoot,
+    generatedCodeDir,
+  });
   orchestrator
     .run({ requirementsFile, rvdFile, continueOnError })
     .then((summary) => {
