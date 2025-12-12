@@ -157,6 +157,9 @@ export class RVDManager {
 
     summary.agents = rvdData.agents?.length || 0;
     summary.executionLog = rvdData.executionLog?.length || 0;
+    if (rvdData.kpis) {
+      summary.kpis = rvdData.kpis;
+    }
 
     return summary;
   }

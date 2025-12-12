@@ -11,6 +11,105 @@
       "category": "testing-strategy",
       "description": "Generated 6 unit test specs",
       "successRate": 0.85
+    },
+    {
+      "id": "pattern_1765575570072",
+      "timestamp": "2025-12-12T21:39:30.072Z",
+      "requirementName": "Test Project API",
+      "name": "test-spec-generation",
+      "category": "generic-pattern",
+      "description": "Generated 50 unit, 2 integration, 2 e2e specs",
+      "successRate": 0.8
+    },
+    {
+      "id": "pattern_1765575620420",
+      "timestamp": "2025-12-12T21:40:20.420Z",
+      "requirementName": "Test Project API",
+      "name": "test-spec-generation",
+      "category": "generic-pattern",
+      "description": "Generated 50 unit, 2 integration, 2 e2e specs",
+      "successRate": 0.8
+    },
+    {
+      "id": "pattern_1765575661311",
+      "timestamp": "2025-12-12T21:41:01.311Z",
+      "requirementName": "Test Project API",
+      "name": "test-spec-generation",
+      "category": "generic-pattern",
+      "description": "Generated 50 unit, 2 integration, 2 e2e specs",
+      "successRate": 0.8
+    },
+    {
+      "id": "pattern_1765575819463",
+      "timestamp": "2025-12-12T21:43:39.463Z",
+      "requirementName": "unknown",
+      "name": "test-spec-generation",
+      "category": "generic-pattern",
+      "description": "Generated 50 unit, 2 integration, 2 e2e specs",
+      "successRate": 0.8
+    },
+    {
+      "id": "pattern_1765576155354",
+      "timestamp": "2025-12-12T21:49:15.354Z",
+      "requirementName": "unknown",
+      "name": "test-spec-generation",
+      "category": "generic-pattern",
+      "description": "Generated 50 unit, 2 integration, 2 e2e specs",
+      "successRate": 0.8
+    },
+    {
+      "id": "pattern_1765576573134",
+      "timestamp": "2025-12-12T21:56:13.134Z",
+      "requirementName": "Test Project API",
+      "name": "test-spec-generation",
+      "category": "generic-pattern",
+      "description": "Generated 50 unit, 2 integration, 2 e2e specs",
+      "successRate": 0.8
+    },
+    {
+      "id": "pattern_1765576643102",
+      "timestamp": "2025-12-12T21:57:23.102Z",
+      "requirementName": "Test Project API",
+      "name": "test-spec-generation",
+      "category": "generic-pattern",
+      "description": "Generated 50 unit, 2 integration, 2 e2e specs",
+      "successRate": 0.8
+    },
+    {
+      "id": "pattern_1765576682411",
+      "timestamp": "2025-12-12T21:58:02.411Z",
+      "requirementName": "Test Project API",
+      "name": "test-spec-generation",
+      "category": "generic-pattern",
+      "description": "Generated 50 unit, 2 integration, 2 e2e specs",
+      "successRate": 0.8
+    },
+    {
+      "id": "pattern_1765577100079",
+      "timestamp": "2025-12-12T22:05:00.079Z",
+      "requirementName": "Test Project API",
+      "name": "test-spec-generation",
+      "category": "generic-pattern",
+      "description": "Generated 50 unit, 2 integration, 2 e2e specs",
+      "successRate": 0.8
+    },
+    {
+      "id": "pattern_1765577239465",
+      "timestamp": "2025-12-12T22:07:19.465Z",
+      "requirementName": "Test Project API",
+      "name": "test-spec-generation",
+      "category": "generic-pattern",
+      "description": "Generated 50 unit, 2 integration, 2 e2e specs",
+      "successRate": 0.8
+    },
+    {
+      "id": "pattern_1765577468815",
+      "timestamp": "2025-12-12T22:11:08.815Z",
+      "requirementName": "hello-world",
+      "name": "test-spec-generation",
+      "category": "generic-pattern",
+      "description": "Generated 94 unit, 2 integration, 2 e2e specs",
+      "successRate": 0.8
     }
   ],
   "strategies": []

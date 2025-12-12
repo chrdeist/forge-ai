@@ -54,6 +54,11 @@ export class FunctionalRequirementsAgent extends BaseAgent {
     // Initialize or load RVD file
     const rvd = await this.rvdManager.loadOrCreate(rvdFilePath, projectName);
 
+    // Ensure project metadata is propagated
+    rvd.project = rvd.project || {};
+    rvd.project.name = projectName;
+    rvd.project.path = path.dirname(rvdFilePath);
+
     // Write to functional section
     rvd.functional = {
       timestamp: new Date().toISOString(),

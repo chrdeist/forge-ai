@@ -13,7 +13,9 @@
     "dashboard": "node packages/cli/forge.mjs dashboard",
     "evolve": "node packages/cli/forge.mjs evolve",
     "test": "node --test tests/**/*.test.mjs",
-    "dev": "node --watch packages/cli/forge.mjs"
+    "dev": "node --watch packages/cli/forge.mjs",
+    "orchestrate": "node packages/orchestrator/software-lifecycle-orchestrator.mjs",
+    "orchestrate:test": "node packages/orchestrator/software-lifecycle-orchestrator.mjs --requirements=test-8-agent-pipeline/test-requirements.md --rvd=test-8-agent-pipeline/pipeline-orchestrator.json"
   },
   "keywords": [
     "ai",
@@ -25,8 +27,9 @@
   ],
   "author": "chrdeist",
   "license": "MIT",
-  "dependencies": {},
-  "devDependencies": {},
+  "devDependencies": {
+    "ajv": "^8.17.1"
+  },
   "engines": {
     "node": ">=18.0.0"
   }

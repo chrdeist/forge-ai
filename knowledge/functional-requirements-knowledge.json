@@ -30,6 +30,123 @@
       "category": "generic-pattern",
       "description": "Successfully extracted 94 functional requirements",
       "successRate": 0.9
+    },
+    {
+      "id": "pattern_1765575451671",
+      "timestamp": "2025-12-12T21:37:31.671Z",
+      "requirementName": "Test Project API",
+      "name": "functional-requirements-extraction",
+      "category": "generic-pattern",
+      "description": "Successfully extracted 50 functional requirements",
+      "successRate": 0.9
+    },
+    {
+      "id": "pattern_1765575570001",
+      "timestamp": "2025-12-12T21:39:30.001Z",
+      "requirementName": "Test Project API",
+      "name": "functional-requirements-extraction",
+      "category": "generic-pattern",
+      "description": "Successfully extracted 50 functional requirements",
+      "successRate": 0.9
+    },
+    {
+      "id": "pattern_1765575620305",
+      "timestamp": "2025-12-12T21:40:20.305Z",
+      "requirementName": "Test Project API",
+      "name": "functional-requirements-extraction",
+      "category": "generic-pattern",
+      "description": "Successfully extracted 50 functional requirements",
+      "successRate": 0.9
+    },
+    {
+      "id": "pattern_1765575661230",
+      "timestamp": "2025-12-12T21:41:01.230Z",
+      "requirementName": "Test Project API",
+      "name": "functional-requirements-extraction",
+      "category": "generic-pattern",
+      "description": "Successfully extracted 50 functional requirements",
+      "successRate": 0.9
+    },
+    {
+      "id": "pattern_1765575819362",
+      "timestamp": "2025-12-12T21:43:39.362Z",
+      "requirementName": "Test Project API",
+      "name": "functional-requirements-extraction",
+      "category": "generic-pattern",
+      "description": "Successfully extracted 50 functional requirements",
+      "successRate": 0.9
+    },
+    {
+      "id": "pattern_1765576155280",
+      "timestamp": "2025-12-12T21:49:15.280Z",
+      "requirementName": "Test Project API",
+      "name": "functional-requirements-extraction",
+      "category": "generic-pattern",
+      "description": "Successfully extracted 50 functional requirements",
+      "successRate": 0.9
+    },
+    {
+      "id": "pattern_1765576573087",
+      "timestamp": "2025-12-12T21:56:13.087Z",
+      "requirementName": "Test Project API",
+      "name": "functional-requirements-extraction",
+      "category": "generic-pattern",
+      "description": "Successfully extracted 50 functional requirements",
+      "successRate": 0.9
+    },
+    {
+      "id": "pattern_1765576643054",
+      "timestamp": "2025-12-12T21:57:23.054Z",
+      "requirementName": "Test Project API",
+      "name": "functional-requirements-extraction",
+      "category": "generic-pattern",
+      "description": "Successfully extracted 50 functional requirements",
+      "successRate": 0.9
+    },
+    {
+      "id": "pattern_1765576682388",
+      "timestamp": "2025-12-12T21:58:02.388Z",
+      "requirementName": "Test Project API",
+      "name": "functional-requirements-extraction",
+      "category": "generic-pattern",
+      "description": "Successfully extracted 50 functional requirements",
+      "successRate": 0.9
+    },
+    {
+      "id": "pattern_1765577062561",
+      "timestamp": "2025-12-12T22:04:22.561Z",
+      "requirementName": "Test Project API",
+      "name": "functional-requirements-extraction",
+      "category": "generic-pattern",
+      "description": "Successfully extracted 50 functional requirements",
+      "successRate": 0.9
+    },
+    {
+      "id": "pattern_1765577099990",
+      "timestamp": "2025-12-12T22:04:59.990Z",
+      "requirementName": "Test Project API",
+      "name": "functional-requirements-extraction",
+      "category": "generic-pattern",
+      "description": "Successfully extracted 50 functional requirements",
+      "successRate": 0.9
+    },
+    {
+      "id": "pattern_1765577239382",
+      "timestamp": "2025-12-12T22:07:19.382Z",
+      "requirementName": "Test Project API",
+      "name": "functional-requirements-extraction",
+      "category": "generic-pattern",
+      "description": "Successfully extracted 50 functional requirements",
+      "successRate": 0.9
+    },
+    {
+      "id": "pattern_1765577468709",
+      "timestamp": "2025-12-12T22:11:08.709Z",
+      "requirementName": "hello-world",
+      "name": "functional-requirements-extraction",
+      "category": "generic-pattern",
+      "description": "Successfully extracted 94 functional requirements",
+      "successRate": 0.9
     }
   ],
   "strategies": []

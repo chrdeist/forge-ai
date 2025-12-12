@@ -1,0 +1,89 @@
+{
+  "version": "1.0",
+  "agentName": "DeploymentAgent",
+  "createdAt": "2025-12-12T21:41:01.539Z",
+  "patterns": [
+    {
+      "id": "pattern_1765575661567",
+      "timestamp": "2025-12-12T21:41:01.567Z",
+      "requirementName": "Test Project API",
+      "name": "deployment-config-generation",
+      "category": "generic-pattern",
+      "description": "Generated deployment configs for targets: Docker, Kubernetes, Cloud (AWS/Azure/GCP)",
+      "successRate": 0.8
+    },
+    {
+      "id": "pattern_1765575819800",
+      "timestamp": "2025-12-12T21:43:39.800Z",
+      "requirementName": "unknown",
+      "name": "deployment-config-generation",
+      "category": "generic-pattern",
+      "description": "Generated deployment configs for targets: Docker, Kubernetes, Cloud (AWS/Azure/GCP)",
+      "successRate": 0.8
+    },
+    {
+      "id": "pattern_1765576155742",
+      "timestamp": "2025-12-12T21:49:15.742Z",
+      "requirementName": "unknown",
+      "name": "deployment-config-generation",
+      "category": "generic-pattern",
+      "description": "Generated deployment configs for targets: Docker, Kubernetes, Cloud (AWS/Azure/GCP)",
+      "successRate": 0.8
+    },
+    {
+      "id": "pattern_1765576573391",
+      "timestamp": "2025-12-12T21:56:13.391Z",
+      "requirementName": "Test Project API",
+      "name": "deployment-config-generation",
+      "category": "generic-pattern",
+      "description": "Generated deployment configs for targets: Docker, Kubernetes, Cloud (AWS/Azure/GCP)",
+      "successRate": 0.8
+    },
+    {
+      "id": "pattern_1765576643380",
+      "timestamp": "2025-12-12T21:57:23.380Z",
+      "requirementName": "Test Project API",
+      "name": "deployment-config-generation",
+      "category": "generic-pattern",
+      "description": "Generated deployment configs for targets: Docker, Kubernetes, Cloud (AWS/Azure/GCP)",
+      "successRate": 0.8
+    },
+    {
+      "id": "pattern_1765576682567",
+      "timestamp": "2025-12-12T21:58:02.567Z",
+      "requirementName": "Test Project API",
+      "name": "deployment-config-generation",
+      "category": "generic-pattern",
+      "description": "Generated deployment configs for targets: Docker, Kubernetes, Cloud (AWS/Azure/GCP)",
+      "successRate": 0.8
+    },
+    {
+      "id": "pattern_1765577100404",
+      "timestamp": "2025-12-12T22:05:00.404Z",
+      "requirementName": "Test Project API",
+      "name": "deployment-config-generation",
+      "category": "generic-pattern",
+      "description": "Generated deployment configs for targets: Docker, Kubernetes, Cloud (AWS/Azure/GCP)",
+      "successRate": 0.8
+    },
+    {
+      "id": "pattern_1765577239673",
+      "timestamp": "2025-12-12T22:07:19.673Z",
+      "requirementName": "Test Project API",
+      "name": "deployment-config-generation",
+      "category": "generic-pattern",
+      "description": "Generated deployment configs for targets: Docker, Kubernetes, Cloud (AWS/Azure/GCP)",
+      "successRate": 0.8
+    },
+    {
+      "id": "pattern_1765577469348",
+      "timestamp": "2025-12-12T22:11:09.348Z",
+      "requirementName": "hello-world",
+      "name": "deployment-config-generation",
+      "category": "generic-pattern",
+      "description": "Generated deployment configs for targets: Docker, Kubernetes, Cloud (AWS/Azure/GCP)",
+      "successRate": 0.8
+    }
+  ],
+  "strategies": []
+}

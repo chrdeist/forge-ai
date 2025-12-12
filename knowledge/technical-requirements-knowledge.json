@@ -47,6 +47,114 @@
       "category": "generic-pattern",
       "description": "Generated technical spec with 94 APIs from functional requirements",
       "successRate": 0.85
+    },
+    {
+      "id": "pattern_1765575451695",
+      "timestamp": "2025-12-12T21:37:31.695Z",
+      "requirementName": "Test Project API",
+      "name": "api-specification-generation",
+      "category": "generic-pattern",
+      "description": "Generated technical spec with 50 APIs from functional requirements",
+      "successRate": 0.85
+    },
+    {
+      "id": "pattern_1765575570039",
+      "timestamp": "2025-12-12T21:39:30.039Z",
+      "requirementName": "Test Project API",
+      "name": "api-specification-generation",
+      "category": "generic-pattern",
+      "description": "Generated technical spec with 50 APIs from functional requirements",
+      "successRate": 0.85
+    },
+    {
+      "id": "pattern_1765575620342",
+      "timestamp": "2025-12-12T21:40:20.342Z",
+      "requirementName": "Test Project API",
+      "name": "api-specification-generation",
+      "category": "generic-pattern",
+      "description": "Generated technical spec with 50 APIs from functional requirements",
+      "successRate": 0.85
+    },
+    {
+      "id": "pattern_1765575661250",
+      "timestamp": "2025-12-12T21:41:01.250Z",
+      "requirementName": "Test Project API",
+      "name": "api-specification-generation",
+      "category": "generic-pattern",
+      "description": "Generated technical spec with 50 APIs from functional requirements",
+      "successRate": 0.85
+    },
+    {
+      "id": "pattern_1765575819398",
+      "timestamp": "2025-12-12T21:43:39.398Z",
+      "requirementName": "unknown",
+      "name": "api-specification-generation",
+      "category": "generic-pattern",
+      "description": "Generated technical spec with 50 APIs from functional requirements",
+      "successRate": 0.85
+    },
+    {
+      "id": "pattern_1765576155307",
+      "timestamp": "2025-12-12T21:49:15.307Z",
+      "requirementName": "unknown",
+      "name": "api-specification-generation",
+      "category": "generic-pattern",
+      "description": "Generated technical spec with 50 APIs from functional requirements",
+      "successRate": 0.85
+    },
+    {
+      "id": "pattern_1765576573094",
+      "timestamp": "2025-12-12T21:56:13.094Z",
+      "requirementName": "Test Project API",
+      "name": "api-specification-generation",
+      "category": "generic-pattern",
+      "description": "Generated technical spec with 50 APIs from functional requirements",
+      "successRate": 0.85
+    },
+    {
+      "id": "pattern_1765576643063",
+      "timestamp": "2025-12-12T21:57:23.063Z",
+      "requirementName": "Test Project API",
+      "name": "api-specification-generation",
+      "category": "generic-pattern",
+      "description": "Generated technical spec with 50 APIs from functional requirements",
+      "successRate": 0.85
+    },
+    {
+      "id": "pattern_1765576682395",
+      "timestamp": "2025-12-12T21:58:02.395Z",
+      "requirementName": "Test Project API",
+      "name": "api-specification-generation",
+      "category": "generic-pattern",
+      "description": "Generated technical spec with 50 APIs from functional requirements",
+      "successRate": 0.85
+    },
+    {
+      "id": "pattern_1765577100019",
+      "timestamp": "2025-12-12T22:05:00.019Z",
+      "requirementName": "Test Project API",
+      "name": "api-specification-generation",
+      "category": "generic-pattern",
+      "description": "Generated technical spec with 50 APIs from functional requirements",
+      "successRate": 0.85
+    },
+    {
+      "id": "pattern_1765577239410",
+      "timestamp": "2025-12-12T22:07:19.410Z",
+      "requirementName": "Test Project API",
+      "name": "api-specification-generation",
+      "category": "generic-pattern",
+      "description": "Generated technical spec with 50 APIs from functional requirements",
+      "successRate": 0.85
+    },
+    {
+      "id": "pattern_1765577468731",
+      "timestamp": "2025-12-12T22:11:08.731Z",
+      "requirementName": "hello-world",
+      "name": "api-specification-generation",
+      "category": "generic-pattern",
+      "description": "Generated technical spec with 94 APIs from functional requirements",
+      "successRate": 0.85
     }
   ],
   "strategies": []

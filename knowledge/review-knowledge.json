@@ -1,0 +1,98 @@
+{
+  "version": "1.0",
+  "agentName": "ReviewAgent",
+  "createdAt": "2025-12-12T21:40:20.497Z",
+  "patterns": [
+    {
+      "id": "pattern_1765575620529",
+      "timestamp": "2025-12-12T21:40:20.530Z",
+      "requirementName": "Test Project API",
+      "name": "code-review-analysis",
+      "category": "generic-pattern",
+      "description": "Completed code review with overall score 79/100",
+      "successRate": 0.75
+    },
+    {
+      "id": "pattern_1765575661460",
+      "timestamp": "2025-12-12T21:41:01.460Z",
+      "requirementName": "Test Project API",
+      "name": "code-review-analysis",
+      "category": "generic-pattern",
+      "description": "Completed code review with overall score 79/100",
+      "successRate": 0.75
+    },
+    {
+      "id": "pattern_1765575819654",
+      "timestamp": "2025-12-12T21:43:39.654Z",
+      "requirementName": "unknown",
+      "name": "code-review-analysis",
+      "category": "generic-pattern",
+      "description": "Completed code review with overall score 79/100",
+      "successRate": 0.75
+    },
+    {
+      "id": "pattern_1765576155619",
+      "timestamp": "2025-12-12T21:49:15.619Z",
+      "requirementName": "unknown",
+      "name": "code-review-analysis",
+      "category": "generic-pattern",
+      "description": "Completed code review with overall score 79/100",
+      "successRate": 0.75
+    },
+    {
+      "id": "pattern_1765576573275",
+      "timestamp": "2025-12-12T21:56:13.275Z",
+      "requirementName": "Test Project API",
+      "name": "code-review-analysis",
+      "category": "generic-pattern",
+      "description": "Completed code review with overall score 79/100",
+      "successRate": 0.75
+    },
+    {
+      "id": "pattern_1765576643265",
+      "timestamp": "2025-12-12T21:57:23.265Z",
+      "requirementName": "Test Project API",
+      "name": "code-review-analysis",
+      "category": "generic-pattern",
+      "description": "Completed code review with overall score 79/100",
+      "successRate": 0.75
+    },
+    {
+      "id": "pattern_1765576682490",
+      "timestamp": "2025-12-12T21:58:02.490Z",
+      "requirementName": "Test Project API",
+      "name": "code-review-analysis",
+      "category": "generic-pattern",
+      "description": "Completed code review with overall score 79/100",
+      "successRate": 0.75
+    },
+    {
+      "id": "pattern_1765577100257",
+      "timestamp": "2025-12-12T22:05:00.257Z",
+      "requirementName": "Test Project API",
+      "name": "code-review-analysis",
+      "category": "generic-pattern",
+      "description": "Completed code review with overall score 79/100",
+      "successRate": 0.75
+    },
+    {
+      "id": "pattern_1765577239583",
+      "timestamp": "2025-12-12T22:07:19.583Z",
+      "requirementName": "Test Project API",
+      "name": "code-review-analysis",
+      "category": "generic-pattern",
+      "description": "Completed code review with overall score 79/100",
+      "successRate": 0.75
+    },
+    {
+      "id": "pattern_1765577469135",
+      "timestamp": "2025-12-12T22:11:09.135Z",
+      "requirementName": "hello-world",
+      "name": "code-review-analysis",
+      "category": "generic-pattern",
+      "description": "Completed code review with overall score 79/100",
+      "successRate": 0.75
+    }
+  ],
+  "strategies": []
+}

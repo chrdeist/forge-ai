@@ -34,6 +34,20 @@ Production Ready 🚀
 
 **Total time:** ~7.4 seconds | **All automated**
 
+## 📚 Documentation
+
+Complete documentation is available in the [docs/](./docs/) directory:
+
+- **[Architecture](./docs/architecture/)** - Design principles and data flow
+- **[Implementation](./docs/implementation/)** - Technical details and roadmap  
+- **[Guides](./docs/guides/)** - How-to tutorials (coming soon)
+- **[Reference](./docs/reference/)** - API documentation (coming soon)
+
+**Quick links:**
+- [RVD Implementation Status](./docs/implementation/01-rvd-implementation-status.md)
+- [Refactoring Checklist](./docs/implementation/02-refactoring-checklist.md)
+- [Agent Data Flow](./docs/architecture/01-agent-data-flow.md)
+
 ## 🧪 Test the Framework Immediately
 
 ### Option 1: Full Workflow (with Docker - Phase 10)

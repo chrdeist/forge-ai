@@ -30,6 +30,96 @@
       "category": "code-generation",
       "description": "Generated implementation from technical spec with 3 APIs",
       "successRate": 0.9
+    },
+    {
+      "id": "pattern_1765575620487",
+      "timestamp": "2025-12-12T21:40:20.487Z",
+      "requirementName": "Test Project API",
+      "name": "code-generation",
+      "category": "generic-pattern",
+      "description": "Generated 112 implementation files",
+      "successRate": 0.85
+    },
+    {
+      "id": "pattern_1765575661402",
+      "timestamp": "2025-12-12T21:41:01.402Z",
+      "requirementName": "Test Project API",
+      "name": "code-generation",
+      "category": "generic-pattern",
+      "description": "Generated 112 implementation files",
+      "successRate": 0.85
+    },
+    {
+      "id": "pattern_1765575819595",
+      "timestamp": "2025-12-12T21:43:39.595Z",
+      "requirementName": "unknown",
+      "name": "code-generation",
+      "category": "generic-pattern",
+      "description": "Generated 112 implementation files",
+      "successRate": 0.85
+    },
+    {
+      "id": "pattern_1765576155535",
+      "timestamp": "2025-12-12T21:49:15.535Z",
+      "requirementName": "unknown",
+      "name": "code-generation",
+      "category": "generic-pattern",
+      "description": "Generated 112 implementation files",
+      "successRate": 0.85
+    },
+    {
+      "id": "pattern_1765576573220",
+      "timestamp": "2025-12-12T21:56:13.220Z",
+      "requirementName": "Test Project API",
+      "name": "code-generation",
+      "category": "generic-pattern",
+      "description": "Generated 112 implementation files",
+      "successRate": 0.85
+    },
+    {
+      "id": "pattern_1765576643197",
+      "timestamp": "2025-12-12T21:57:23.197Z",
+      "requirementName": "Test Project API",
+      "name": "code-generation",
+      "category": "generic-pattern",
+      "description": "Generated 112 implementation files",
+      "successRate": 0.85
+    },
+    {
+      "id": "pattern_1765576682456",
+      "timestamp": "2025-12-12T21:58:02.456Z",
+      "requirementName": "Test Project API",
+      "name": "code-generation",
+      "category": "generic-pattern",
+      "description": "Generated 112 implementation files",
+      "successRate": 0.85
+    },
+    {
+      "id": "pattern_1765577100173",
+      "timestamp": "2025-12-12T22:05:00.174Z",
+      "requirementName": "Test Project API",
+      "name": "code-generation",
+      "category": "generic-pattern",
+      "description": "Generated 112 implementation files",
+      "successRate": 0.85
+    },
+    {
+      "id": "pattern_1765577239540",
+      "timestamp": "2025-12-12T22:07:19.540Z",
+      "requirementName": "Test Project API",
+      "name": "code-generation",
+      "category": "generic-pattern",
+      "description": "Generated 112 implementation files",
+      "successRate": 0.85
+    },
+    {
+      "id": "pattern_1765577468989",
+      "timestamp": "2025-12-12T22:11:08.989Z",
+      "requirementName": "hello-world",
+      "name": "code-generation",
+      "category": "generic-pattern",
+      "description": "Generated 200 implementation files",
+      "successRate": 0.85
     }
   ],
   "strategies": []
