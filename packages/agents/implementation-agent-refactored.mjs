@@ -201,6 +201,7 @@ export class ImplementationAgent extends BaseAgent {
 import express from 'express';
 import cors from 'cors';
 import 'dotenv/config';
+import routes from './routes/index.js';
 
 const app = express();
 
@@ -219,7 +220,7 @@ app.get('/health', (req, res) => {
 });
 
 // API Routes
-app.use('/api', require('./routes/index.js').default);
+app.use('/api', routes.default || routes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
