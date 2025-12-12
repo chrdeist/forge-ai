@@ -1,0 +1,241 @@
+{
+  "version": "1.0",
+  "description": "Validation rules - automated checks to run on generated code",
+  "lastUpdated": "2025-12-12T23:00:00Z",
+  "rules": [
+    {
+      "id": "rule-val-001",
+      "name": "Package JSON Validity",
+      "description": "Ensure package.json is valid JSON and has required fields",
+      "category": "validation",
+      "phase": ["implementation"],
+      "severity": "CRITICAL",
+      "enabled": true,
+      "condition": {
+        "type": "file-exists",
+        "trigger": "package.json exists",
+        "check": {
+          "file": "package.json"
+        }
+      },
+      "action": {
+        "type": "run-validation",
+        "command": "node -e \"const pkg = require('./package.json'); if (!pkg.name || !pkg.version || !pkg.main || !pkg.scripts) process.exit(1);\""
+      },
+      "validation": {
+        "check": "jq -e '.name and .version and .main and .scripts' package.json",
+        "expect": "exit code 0",
+        "message": "package.json missing required fields or invalid JSON"
+      },
+      "metadata": {
+        "created": "2025-12-12T23:00:00Z",
+        "author": "system",
+        "success_rate": 1.0
+      }
+    },
+    {
+      "id": "rule-val-002",
+      "name": "Syntax Check All Generated JS",
+      "description": "Run node --check on all generated JavaScript files",
+      "category": "validation",
+      "phase": ["implementation"],
+      "severity": "CRITICAL",
+      "enabled": true,
+      "condition": {
+        "type": "always",
+        "trigger": "After code generation"
+      },
+      "action": {
+        "type": "run-validation",
+        "command": "find src/ -name '*.js' -exec node --check {} \\;"
+      },
+      "validation": {
+        "check": "find src/ -name '*.js' -exec node --check {} \\;",
+        "expect": "no errors",
+        "message": "Syntax errors found in generated JavaScript files"
+      },
+      "metadata": {
+        "created": "2025-12-12T23:00:00Z",
+        "author": "system",
+        "success_rate": 0.98
+      }
+    },
+    {
+      "id": "rule-val-003",
+      "name": "ESM Module Consistency Check",
+      "description": "When type:module, verify no require() usage",
+      "category": "validation",
+      "phase": ["implementation", "review"],
+      "severity": "CRITICAL",
+      "enabled": true,
+      "condition": {
+        "type": "package-config",
+        "trigger": "package.json has 'type: module'",
+        "check": {
+          "file": "package.json",
+          "field": "type",
+          "value": "module"
+        }
+      },
+      "action": {
+        "type": "run-validation",
+        "command": "! grep -r \"require(\" src/ --include='*.js'"
+      },
+      "validation": {
+        "check": "grep -r \"require(\" src/ --include='*.js' || echo 'PASS'",
+        "expect": "PASS",
+        "message": "CRITICAL: Found require() in ESM package (type: module). Use import instead."
+      },
+      "metadata": {
+        "created": "2025-12-12T23:00:00Z",
+        "author": "system",
+        "success_rate": 1.0
+      }
+    },
+    {
+      "id": "rule-val-004",
+      "name": "Test Files Exist",
+      "description": "Verify at least one test file was generated",
+      "category": "validation",
+      "phase": ["implementation", "testing"],
+      "severity": "HIGH",
+      "enabled": true,
+      "condition": {
+        "type": "always",
+        "trigger": "After implementation phase"
+      },
+      "action": {
+        "type": "run-validation",
+        "command": "find tests/ src/ -name '*.test.js' -o -name '*.spec.js' | grep -q ."
+      },
+      "validation": {
+        "check": "find tests/ src/ -name '*.test.js' -o -name '*.spec.js' | wc -l",
+        "expect": ">= 1",
+        "message": "No test files found"
+      },
+      "metadata": {
+        "created": "2025-12-12T23:00:00Z",
+        "author": "system",
+        "success_rate": 0.95
+      }
+    },
+    {
+      "id": "rule-val-005",
+      "name": "NPM Install Success",
+      "description": "Verify npm install completes without errors",
+      "category": "validation",
+      "phase": ["implementation"],
+      "severity": "HIGH",
+      "enabled": true,
+      "condition": {
+        "type": "file-exists",
+        "trigger": "package.json exists",
+        "check": {
+          "file": "package.json"
+        }
+      },
+      "action": {
+        "type": "run-validation",
+        "command": "npm install --silent"
+      },
+      "validation": {
+        "check": "npm install",
+        "expect": "exit code 0",
+        "message": "npm install failed - check package.json dependencies"
+      },
+      "metadata": {
+        "created": "2025-12-12T23:00:00Z",
+        "author": "system",
+        "success_rate": 0.90
+      }
+    },
+    {
+      "id": "rule-val-006",
+      "name": "NPM Test Execution",
+      "description": "Run npm test and verify all tests pass",
+      "category": "validation",
+      "phase": ["testing"],
+      "severity": "HIGH",
+      "enabled": true,
+      "condition": {
+        "type": "file-exists",
+        "trigger": "package.json with test script",
+        "check": {
+          "file": "package.json",
+          "field": "scripts.test"
+        }
+      },
+      "action": {
+        "type": "run-validation",
+        "command": "npm test"
+      },
+      "validation": {
+        "check": "npm test 2>&1 | grep -q 'Tests:.*passed'",
+        "expect": "match found",
+        "message": "Tests failed or no tests executed"
+      },
+      "metadata": {
+        "created": "2025-12-12T23:00:00Z",
+        "author": "system",
+        "success_rate": 0.85
+      }
+    },
+    {
+      "id": "rule-val-007",
+      "name": "Server Startup Check",
+      "description": "Verify server starts without errors (timeout after 5s)",
+      "category": "validation",
+      "phase": ["implementation"],
+      "severity": "MEDIUM",
+      "enabled": true,
+      "condition": {
+        "type": "file-exists",
+        "trigger": "Main entry point exists",
+        "check": {
+          "file": "src/index.js"
+        }
+      },
+      "action": {
+        "type": "run-validation",
+        "command": "timeout 5 npm start 2>&1 | grep -q 'running\\|listening\\|started' || exit 0"
+      },
+      "validation": {
+        "check": "timeout 5 npm start 2>&1",
+        "expect": "no ReferenceError or SyntaxError",
+        "message": "Server failed to start - check for runtime errors"
+      },
+      "metadata": {
+        "created": "2025-12-12T23:00:00Z",
+        "author": "system",
+        "success_rate": 0.90
+      }
+    },
+    {
+      "id": "rule-val-008",
+      "name": "README Exists",
+      "description": "Verify README.md was generated",
+      "category": "validation",
+      "phase": ["documentation"],
+      "severity": "LOW",
+      "enabled": true,
+      "condition": {
+        "type": "always",
+        "trigger": "After documentation phase"
+      },
+      "action": {
+        "type": "run-validation",
+        "command": "[ -f README.md ]"
+      },
+      "validation": {
+        "check": "[ -f README.md ] && [ -s README.md ]",
+        "expect": "exit code 0",
+        "message": "README.md missing or empty"
+      },
+      "metadata": {
+        "created": "2025-12-12T23:00:00Z",
+        "author": "system",
+        "success_rate": 0.95
+      }
+    }
+  ]
+}

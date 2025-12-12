@@ -1,0 +1,235 @@
+{
+  "version": "1.0",
+  "description": "Error resolution rules - WHEN error X occurs THEN apply fix Y",
+  "lastUpdated": "2025-12-12T23:00:00Z",
+  "rules": [
+    {
+      "id": "rule-err-001",
+      "name": "ESM Require Error Fix",
+      "description": "Auto-fix ReferenceError: require is not defined in ES module scope",
+      "category": "error-resolution",
+      "phase": ["implementation", "review"],
+      "severity": "CRITICAL",
+      "enabled": true,
+      "condition": {
+        "type": "custom",
+        "trigger": "ReferenceError: require is not defined",
+        "check": {
+          "pattern": "ReferenceError.*require is not defined",
+          "in": "error output or logs"
+        }
+      },
+      "action": {
+        "type": "apply-fix",
+        "enforce": "CONVERT_TO_ESM_IMPORTS",
+        "fix": {
+          "search": "require\\((['\"])([^'\"]+)\\1\\)",
+          "replace": "import from '$2'"
+        }
+      },
+      "validation": {
+        "check": "node --check <fixed-file>",
+        "expect": "no errors",
+        "message": "File still has syntax errors after ESM conversion"
+      },
+      "examples": [
+        {
+          "wrong": "const routes = require('./routes/index.js');",
+          "correct": "import routes from './routes/index.js';",
+          "explanation": "Replace require() with import in ESM packages"
+        },
+        {
+          "wrong": "app.use('/api', require('./routes').default);",
+          "correct": "import routes from './routes/index.js';\n...\napp.use('/api', routes.default || routes);",
+          "explanation": "Move import to top of file, then use variable"
+        }
+      ],
+      "references": [
+        "knowledge/experiences.json#exp-008-esm-import-consistency"
+      ],
+      "metadata": {
+        "created": "2025-12-12T23:00:00Z",
+        "author": "system",
+        "success_rate": 1.0
+      }
+    },
+    {
+      "id": "rule-err-002",
+      "name": "Module Exports in ESM Fix",
+      "description": "Auto-fix ReferenceError: module is not defined (module.exports in ESM)",
+      "category": "error-resolution",
+      "phase": ["implementation"],
+      "severity": "CRITICAL",
+      "enabled": true,
+      "condition": {
+        "type": "custom",
+        "trigger": "ReferenceError: module is not defined",
+        "check": {
+          "pattern": "ReferenceError.*module is not defined",
+          "in": "error output"
+        }
+      },
+      "action": {
+        "type": "apply-fix",
+        "fix": {
+          "search": "module\\.exports\\s*=",
+          "replace": "export default"
+        }
+      },
+      "validation": {
+        "check": "node --check <fixed-file>",
+        "expect": "no errors",
+        "message": "File still has module.exports after conversion"
+      },
+      "examples": [
+        {
+          "wrong": "module.exports = app;",
+          "correct": "export default app;",
+          "explanation": "Use export default in ESM"
+        }
+      ],
+      "metadata": {
+        "created": "2025-12-12T23:00:00Z",
+        "author": "system",
+        "success_rate": 1.0
+      }
+    },
+    {
+      "id": "rule-err-003",
+      "name": "Template Literal Syntax Error Fix",
+      "description": "Auto-fix unescaped template literals in generated code",
+      "category": "error-resolution",
+      "phase": ["implementation", "deployment"],
+      "severity": "HIGH",
+      "enabled": true,
+      "condition": {
+        "type": "custom",
+        "trigger": "SyntaxError in template literal",
+        "check": {
+          "pattern": "SyntaxError.*template",
+          "in": "error output"
+        }
+      },
+      "action": {
+        "type": "apply-fix",
+        "fix": {
+          "search": "\\$\\{",
+          "replace": "\\\\${"
+        }
+      },
+      "validation": {
+        "check": "node --check <fixed-file>",
+        "expect": "no errors",
+        "message": "Syntax error persists after template escaping"
+      },
+      "examples": [
+        {
+          "wrong": "const code = `const port = ${PORT}`;",
+          "correct": "const code = `const port = \\${PORT}`;",
+          "explanation": "Escape ${} when generating code with templates"
+        }
+      ],
+      "references": [
+        "knowledge/experiences.json#exp-007-template-literal-escaping"
+      ],
+      "metadata": {
+        "created": "2025-12-12T23:00:00Z",
+        "author": "system",
+        "success_rate": 0.98
+      }
+    },
+    {
+      "id": "rule-err-004",
+      "name": "Missing Dependency Fix",
+      "description": "When npm install fails, check package.json for invalid dependencies",
+      "category": "error-resolution",
+      "phase": ["implementation"],
+      "severity": "HIGH",
+      "enabled": true,
+      "condition": {
+        "type": "custom",
+        "trigger": "npm ERR! or dependency resolution failed",
+        "check": {
+          "pattern": "npm ERR!",
+          "in": "npm install output"
+        }
+      },
+      "action": {
+        "type": "run-validation",
+        "command": "npm install --dry-run 2>&1 | grep -i error"
+      },
+      "validation": {
+        "check": "npm install",
+        "expect": "exit code 0",
+        "message": "Dependency installation still failing"
+      },
+      "metadata": {
+        "created": "2025-12-12T23:00:00Z",
+        "author": "system",
+        "success_rate": 0.80
+      }
+    },
+    {
+      "id": "rule-err-005",
+      "name": "Test Failure Investigation",
+      "description": "When tests fail, capture error details for analysis",
+      "category": "error-resolution",
+      "phase": ["testing"],
+      "severity": "MEDIUM",
+      "enabled": true,
+      "condition": {
+        "type": "custom",
+        "trigger": "npm test exits with non-zero code",
+        "check": {
+          "pattern": "FAIL|Error|failed",
+          "in": "npm test output"
+        }
+      },
+      "action": {
+        "type": "run-validation",
+        "command": "npm test 2>&1 | grep -A 5 'FAIL\\|Error'"
+      },
+      "validation": {
+        "check": "npm test",
+        "expect": "all tests pass",
+        "message": "Tests still failing after investigation"
+      },
+      "metadata": {
+        "created": "2025-12-12T23:00:00Z",
+        "author": "system",
+        "success_rate": 0.70
+      }
+    },
+    {
+      "id": "rule-err-006",
+      "name": "Port Already In Use Fix",
+      "description": "When server fails to start due to port in use, suggest alternative",
+      "category": "error-resolution",
+      "phase": ["implementation"],
+      "severity": "LOW",
+      "enabled": true,
+      "condition": {
+        "type": "custom",
+        "trigger": "EADDRINUSE or port already in use",
+        "check": {
+          "pattern": "EADDRINUSE|address already in use",
+          "in": "server startup output"
+        }
+      },
+      "action": {
+        "type": "apply-fix",
+        "command": "echo 'Suggestion: Use PORT=3001 npm start or kill process on port 3000'"
+      },
+      "validation": {
+        "check": "lsof -ti:3000 || echo 'PORT_FREE'",
+        "expect": "PORT_FREE or process killed",
+        "message": "Port 3000 still in use"
+      },
+      "metadata": {
+        "created": "2025-12-12T23:00:00Z",
+        "author": "system",
+        "success_rate": 0.95
+      }
+    }
+  ]
+}

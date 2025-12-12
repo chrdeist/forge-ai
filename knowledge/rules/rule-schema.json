@@ -1,0 +1,166 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Forge AI Rule Schema",
+  "description": "Schema for WHEN-THEN rules in the knowledge base",
+  "type": "object",
+  "required": ["id", "name", "condition", "action", "severity"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^rule-[a-z0-9-]+$",
+      "description": "Unique rule identifier (e.g., rule-esm-001)"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable rule name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed explanation of what the rule does"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["code-generation", "validation", "error-resolution", "quality", "security", "performance"],
+      "description": "Rule category for grouping"
+    },
+    "phase": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["functional", "technical", "architecture", "testing", "implementation", "review", "documentation", "deployment"]
+      },
+      "description": "Which phases this rule applies to"
+    },
+    "condition": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["file-exists", "file-contains", "context-match", "package-config", "always", "custom"],
+          "description": "Type of condition to check"
+        },
+        "trigger": {
+          "type": "string",
+          "description": "Human-readable condition description"
+        },
+        "check": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "file": {"type": "string"},
+                "field": {"type": "string"},
+                "value": {}
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "pattern": {"type": "string"},
+                "in": {"type": "string"}
+              }
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "description": "Machine-readable condition check"
+        }
+      }
+    },
+    "action": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["use-template", "enforce-pattern", "run-validation", "apply-fix", "abort-with-error"],
+          "description": "Type of action to take"
+        },
+        "enforce": {
+          "type": "string",
+          "description": "What pattern/rule to enforce"
+        },
+        "template": {
+          "type": "string",
+          "description": "Path to template file or inline template"
+        },
+        "forbidden": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "List of forbidden patterns/code"
+        },
+        "required": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "List of required patterns/code"
+        },
+        "fix": {
+          "type": "object",
+          "properties": {
+            "search": {"type": "string"},
+            "replace": {"type": "string"}
+          },
+          "description": "Automatic fix to apply"
+        },
+        "command": {
+          "type": "string",
+          "description": "Shell command to execute"
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "properties": {
+        "check": {
+          "type": "string",
+          "description": "Command or check to validate rule was applied"
+        },
+        "expect": {
+          "type": "string",
+          "description": "Expected result of validation check"
+        },
+        "message": {
+          "type": "string",
+          "description": "Error message if validation fails"
+        }
+      }
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["CRITICAL", "HIGH", "MEDIUM", "LOW", "INFO"],
+      "description": "Severity level of the rule"
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether this rule is active"
+    },
+    "examples": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "wrong": {"type": "string"},
+          "correct": {"type": "string"},
+          "explanation": {"type": "string"}
+        }
+      }
+    },
+    "references": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Links to docs, issues, experiences"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "created": {"type": "string", "format": "date-time"},
+        "updated": {"type": "string", "format": "date-time"},
+        "author": {"type": "string"},
+        "success_rate": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    }
+  }
+}

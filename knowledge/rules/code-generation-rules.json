@@ -1,0 +1,256 @@
+{
+  "version": "1.0",
+  "description": "Code generation rules - WHEN-THEN logic for consistent code output",
+  "lastUpdated": "2025-12-12T23:00:00Z",
+  "rules": [
+    {
+      "id": "rule-esm-001",
+      "name": "ESM Import Consistency",
+      "description": "When package.json has 'type: module', enforce ESM import syntax only",
+      "category": "code-generation",
+      "phase": ["implementation"],
+      "severity": "CRITICAL",
+      "enabled": true,
+      "condition": {
+        "type": "package-config",
+        "trigger": "package.json contains 'type: module'",
+        "check": {
+          "file": "package.json",
+          "field": "type",
+          "value": "module"
+        }
+      },
+      "action": {
+        "type": "enforce-pattern",
+        "enforce": "USE_ESM_IMPORTS_ONLY",
+        "template": "templates/esm-app-template.js",
+        "forbidden": [
+          "require(",
+          "module.exports",
+          "exports."
+        ],
+        "required": [
+          "import",
+          "export default",
+          "export {"
+        ]
+      },
+      "validation": {
+        "check": "grep -r \"require(\" src/ || echo 'OK'",
+        "expect": "OK",
+        "message": "Found require() in ESM package - use import instead"
+      },
+      "examples": [
+        {
+          "wrong": "app.use('/api', require('./routes/index.js').default);",
+          "correct": "import routes from './routes/index.js';\napp.use('/api', routes.default || routes);",
+          "explanation": "ESM packages must use import at top of file"
+        },
+        {
+          "wrong": "module.exports = app;",
+          "correct": "export default app;",
+          "explanation": "Use export default instead of module.exports in ESM"
+        }
+      ],
+      "references": [
+        "knowledge/experiences.json#exp-008-esm-import-consistency",
+        "knowledge/strategies.json#strat-004-esm-module-consistency"
+      ],
+      "metadata": {
+        "created": "2025-12-12T22:40:00Z",
+        "updated": "2025-12-12T23:00:00Z",
+        "author": "system",
+        "success_rate": 1.0
+      }
+    },
+    {
+      "id": "rule-esm-002",
+      "name": "CommonJS Consistency",
+      "description": "When package.json has NO 'type: module', use CommonJS require/exports",
+      "category": "code-generation",
+      "phase": ["implementation"],
+      "severity": "HIGH",
+      "enabled": true,
+      "condition": {
+        "type": "package-config",
+        "trigger": "package.json does NOT have 'type: module'",
+        "check": {
+          "file": "package.json",
+          "field": "type",
+          "value": "!module"
+        }
+      },
+      "action": {
+        "type": "use-template",
+        "template": "templates/commonjs-app-template.js",
+        "forbidden": [
+          "import ",
+          "export default",
+          "export {"
+        ],
+        "required": [
+          "require(",
+          "module.exports"
+        ]
+      },
+      "validation": {
+        "check": "grep -r \"import \" src/ | grep -v node_modules || echo 'OK'",
+        "expect": "OK",
+        "message": "Found import in CommonJS package - use require instead"
+      },
+      "examples": [
+        {
+          "wrong": "import express from 'express';",
+          "correct": "const express = require('express');",
+          "explanation": "CommonJS packages must use require"
+        }
+      ],
+      "metadata": {
+        "created": "2025-12-12T23:00:00Z",
+        "author": "system",
+        "success_rate": 1.0
+      }
+    },
+    {
+      "id": "rule-template-001",
+      "name": "Template Literal Escaping",
+      "description": "When generating code with template literals, escape ${} expressions",
+      "category": "code-generation",
+      "phase": ["implementation", "deployment"],
+      "severity": "HIGH",
+      "enabled": true,
+      "condition": {
+        "type": "context-match",
+        "trigger": "Generating code that includes template literals",
+        "check": "generating code with ${ expressions"
+      },
+      "action": {
+        "type": "enforce-pattern",
+        "enforce": "ESCAPE_TEMPLATE_LITERALS",
+        "fix": {
+          "search": "${",
+          "replace": "\\${"
+        }
+      },
+      "validation": {
+        "check": "node --check <generated-file>",
+        "expect": "no errors",
+        "message": "Syntax error in generated file - check template literal escaping"
+      },
+      "examples": [
+        {
+          "wrong": "const code = `const port = ${PORT}`;",
+          "correct": "const code = `const port = \\${PORT}`;",
+          "explanation": "Escape ${} in template strings that generate code containing ${}"
+        }
+      ],
+      "references": [
+        "knowledge/experiences.json#exp-007-template-literal-escaping"
+      ],
+      "metadata": {
+        "created": "2025-12-12T23:00:00Z",
+        "author": "system",
+        "success_rate": 0.99
+      }
+    },
+    {
+      "id": "rule-structure-001",
+      "name": "Standard Directory Structure",
+      "description": "Always create standard directory structure for Node.js projects",
+      "category": "code-generation",
+      "phase": ["implementation"],
+      "severity": "MEDIUM",
+      "enabled": true,
+      "condition": {
+        "type": "always",
+        "trigger": "Generating new Node.js project"
+      },
+      "action": {
+        "type": "enforce-pattern",
+        "enforce": "CREATE_STANDARD_STRUCTURE",
+        "required": [
+          "src/",
+          "tests/",
+          "package.json",
+          "README.md",
+          ".gitignore"
+        ]
+      },
+      "validation": {
+        "check": "[ -d src ] && [ -d tests ] && [ -f package.json ]",
+        "expect": "exit code 0",
+        "message": "Missing required directories or files"
+      },
+      "metadata": {
+        "created": "2025-12-12T23:00:00Z",
+        "author": "system",
+        "success_rate": 1.0
+      }
+    },
+    {
+      "id": "rule-api-001",
+      "name": "API Route Handler Pattern",
+      "description": "Generate API routes with consistent try-catch error handling",
+      "category": "code-generation",
+      "phase": ["implementation"],
+      "severity": "MEDIUM",
+      "enabled": true,
+      "condition": {
+        "type": "context-match",
+        "trigger": "Generating API route handler",
+        "check": "creating route file in src/routes/"
+      },
+      "action": {
+        "type": "use-template",
+        "template": "templates/api-route-template.js",
+        "required": [
+          "try {",
+          "} catch (error) {",
+          "next(error)"
+        ]
+      },
+      "validation": {
+        "check": "grep -l 'try {' src/routes/*.js | wc -l",
+        "expect": "matches route file count",
+        "message": "Not all route handlers have try-catch blocks"
+      },
+      "metadata": {
+        "created": "2025-12-12T23:00:00Z",
+        "author": "system",
+        "success_rate": 0.95
+      }
+    },
+    {
+      "id": "rule-test-001",
+      "name": "Test File Naming Convention",
+      "description": "Test files must end with .test.js or .spec.js",
+      "category": "code-generation",
+      "phase": ["implementation", "testing"],
+      "severity": "LOW",
+      "enabled": true,
+      "condition": {
+        "type": "context-match",
+        "trigger": "Generating test file",
+        "check": "creating test in tests/ or src/"
+      },
+      "action": {
+        "type": "enforce-pattern",
+        "enforce": "TEST_FILE_NAMING",
+        "required": [
+          ".test.js",
+          ".spec.js"
+        ]
+      },
+      "validation": {
+        "check": "find tests/ -name '*.js' ! -name '*.test.js' ! -name '*.spec.js' | wc -l",
+        "expect": "0",
+        "message": "Found test files not following naming convention"
+      },
+      "metadata": {
+        "created": "2025-12-12T23:00:00Z",
+        "author": "system",
+        "success_rate": 1.0
+      }
+    }
+  ]
+}

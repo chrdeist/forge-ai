@@ -387,6 +387,141 @@
         "priority": "CRITICAL",
         "note": "Prevents entire workflow failure from simple syntax mistakes. Early detection saves debugging time."
       }
+    },
+    {
+      "id": "strat-004-esm-module-consistency",
+      "name": "ESM Module Consistency Strategy",
+      "description": "Ensure all generated Node.js code uses consistent module system (ESM or CommonJS) based on package.json configuration",
+      "category": "code-generation-standards",
+      "priority": "CRITICAL",
+      "problem_statement": "Mixing ESM (import/export) and CommonJS (require/module.exports) syntax causes runtime errors",
+      "phases": {
+        "phase_6_implementation": {
+          "name": "Implementation with Module System Check",
+          "steps": [
+            "1. Read package.json to determine module system (check 'type' field)",
+            "2. Set global flag: isESModule = (packageJson.type === 'module')",
+            "3. For ALL code generation, use consistent syntax based on flag:",
+            "   - If isESModule: use 'import' and 'export default' ONLY",
+            "   - If not ESModule: use 'require()' and 'module.exports' ONLY",
+            "4. Place all imports at the top of the file (before any code execution)",
+            "5. For route/middleware registration: import first, then use in app.use()",
+            "6. Handle both default and named exports: 'routes.default || routes'",
+            "7. Never use require() in files where package.json has 'type: module'"
+          ],
+          "validation": [
+            "Grep all generated .js files for 'require(' if type: module",
+            "Run 'node --check <file>' on all generated JavaScript",
+            "Verify server starts with 'npm start'",
+            "All tests pass with 'npm test'"
+          ]
+        },
+        "phase_7_review": {
+          "name": "Code Review for Module Consistency",
+          "checks": [
+            "If package.json has 'type: module', flag any require() as CRITICAL error",
+            "Verify imports are at top of file",
+            "Check for dynamic imports using await import() not require()",
+            "Validate module.exports not used in ESM files"
+          ]
+        }
+      },
+      "implementation_template": {
+        "esm_main_app": {
+          "imports": [
+            "import express from 'express';",
+            "import cors from 'cors';",
+            "import 'dotenv/config';",
+            "import routes from './routes/index.js';"
+          ],
+          "usage": "app.use('/api', routes.default || routes);",
+          "exports": "export default app;"
+        },
+        "esm_router": {
+          "imports": [
+            "import express from 'express';",
+            "import route1 from './api-1.js';",
+            "import route2 from './api-2.js';"
+          ],
+          "usage": [
+            "const router = express.Router();",
+            "router.use('/path1', route1);",
+            "router.use('/path2', route2);"
+          ],
+          "exports": "export default router;"
+        },
+        "commonjs_main_app": {
+          "requires": [
+            "const express = require('express');",
+            "const cors = require('cors');",
+            "require('dotenv').config();",
+            "const routes = require('./routes');"
+          ],
+          "usage": "app.use('/api', routes);",
+          "exports": "module.exports = app;"
+        }
+      },
+      "error_patterns_to_avoid": [
+        {
+          "pattern": "require() in ESM context",
+          "error": "ReferenceError: require is not defined in ES module scope",
+          "fix": "Replace with: import statement at top of file"
+        },
+        {
+          "pattern": "module.exports in ESM",
+          "error": "ReferenceError: module is not defined in ES module scope",
+          "fix": "Replace with: export default"
+        },
+        {
+          "pattern": "import in CommonJS without flag",
+          "error": "SyntaxError: Cannot use import statement outside a module",
+          "fix": "Add 'type: module' to package.json OR use require()"
+        }
+      ],
+      "detection_methods": [
+        "Static analysis: grep for 'require\\(' in .js files",
+        "AST parsing: detect CommonJS nodes in ESM packages",
+        "Runtime check: node --check <file>",
+        "Integration test: npm start with timeout"
+      ],
+      "rollout": {
+        "immediate_actions": [
+          "Update ImplementationAgent templates to check packageJson.type",
+          "Add module system flag to code generation context",
+          "Update all template strings to use consistent syntax"
+        ],
+        "validation_harness": [
+          "Add npm start timeout test to IncrementalWorkflow validation",
+          "Grep check for require() when type: module detected",
+          "Fail validation if module inconsistency found"
+        ]
+      },
+      "success_metrics": {
+        "zero_module_errors": "No ReferenceError or SyntaxError related to module system",
+        "server_startup_rate": "100% successful npm start",
+        "test_pass_rate": "100% npm test success",
+        "validation_detection": "Catch module inconsistencies before human review"
+      },
+      "tools_and_libs": [
+        "grep for pattern detection",
+        "node --check for syntax validation",
+        "package.json parser to read 'type' field",
+        "AST tools (optional): acorn, esprima"
+      ],
+      "success_rate": 1.0,
+      "tags": ["esm", "commonjs", "modules", "import", "require", "code-generation", "phase-6", "phase-7"],
+      "quality_metrics": {
+        "workflow_completeness": 100,
+        "code_efficiency": 100,
+        "feature_completeness": 0,
+        "test_quality": 100,
+        "resource_efficiency": 100,
+        "overall_score": 100,
+        "token_cost": "very_low",
+        "complexity": "low",
+        "priority": "CRITICAL",
+        "note": "Simple flag-based check prevents runtime errors. Zero tolerance for module system mixing. Detection is trivial (grep), fix is straightforward (template change)."
+      }
     }
   ]
 }
