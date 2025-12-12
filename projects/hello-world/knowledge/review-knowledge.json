@@ -1,0 +1,26 @@
+{
+  "version": "1.0",
+  "agentName": "ReviewAgent",
+  "createdAt": "2025-12-12T23:29:41.189Z",
+  "patterns": [
+    {
+      "id": "pattern_1765582181256",
+      "timestamp": "2025-12-12T23:29:41.257Z",
+      "requirementName": "hello-world-feature-3",
+      "name": "code-review-analysis",
+      "category": "generic-pattern",
+      "description": "Completed code review with overall score 79/100",
+      "successRate": 0.75
+    },
+    {
+      "id": "pattern_1765582387864",
+      "timestamp": "2025-12-12T23:33:07.864Z",
+      "requirementName": "hello-world-feature-3",
+      "name": "code-review-analysis",
+      "category": "generic-pattern",
+      "description": "Completed code review with overall score 79/100",
+      "successRate": 0.75
+    }
+  ],
+  "strategies": []
+}

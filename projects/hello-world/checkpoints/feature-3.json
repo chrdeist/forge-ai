@@ -1,0 +1,43 @@
+{
+  "featureName": "feature-3",
+  "createdAt": "2025-12-12T23:09:19.947Z",
+  "phases": {
+    "functional": {
+      "completedAt": "2025-12-12T23:10:16.020Z"
+    },
+    "deployment": {
+      "completedAt": "2025-12-12T23:33:08.225Z"
+    }
+  },
+  "status": "approved",
+  "requirements": "projects/hello-world/requirements/hello-world-feature-3.md",
+  "lastPhase": "deployment",
+  "validation": {
+    "passed": true,
+    "checks": [
+      {
+        "name": "files-generated",
+        "status": "pass",
+        "message": "7049 files generated"
+      },
+      {
+        "name": "package-json-valid",
+        "status": "pass",
+        "message": "hello-world-feature-3"
+      },
+      {
+        "name": "tests-present",
+        "status": "pass",
+        "message": "2 test files"
+      },
+      {
+        "name": "readme-present",
+        "status": "warn",
+        "message": "No README.md"
+      }
+    ],
+    "errors": []
+  },
+  "reviewNotes": "Deployment-Integration erfolgreich getestet. Docker Container läuft, Build-Script funktioniert.",
+  "approvedAt": "2025-12-12T23:43:51.661Z"
+}
