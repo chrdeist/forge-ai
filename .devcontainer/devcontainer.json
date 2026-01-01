@@ -1,0 +1,10 @@
+{
+  "name": "forge-ai",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:22",
+  "remoteUser": "node",
+  "workspaceFolder": "/workspaces/forge-ai",
+  "postCreateCommand": "npm install -g openai && npm install",
+  "containerEnv": {
+    "OPENAI_API_KEY": "${localEnv:OPENAI_API_KEY}"
+  }
+}
